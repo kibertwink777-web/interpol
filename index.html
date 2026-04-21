@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header>
+                <div></div>
+                <h1 class="header-text">Interpol</h1>
+                <i class="fa-regular fa-user reg-icon"></i>
+        </header>
+        <div class="head-page">
+            <div class="load-container">
+                <div class="ball"></div>
+                <div class="ball"></div>
+                <div class="ball"></div>
+            </div>
+            <div class="err-el-container">
+                <h1 class="err-el">ошибка загрузки файлов</h1>
+                <h3 class="err-el">проверьте подключение к интернету и <span class="reload">перезагрузите сайт</span></h3>
+                <h4 class="err-el">Если хотите, мы можем загрузить последние данные из локального хранилища</h4>
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-text search-input" placeholder="search">
+                <span class="material-symbols-outlined search-text search-button" translate="no">search</span>
+                <h4 class="search-text search-info">Всего:</h4>
+            </div>
+            <div class="grid-container">
+            </div>
+        </div>
+
+
+
+        <div class="reg-page">
+            <div class="reg-field">
+                <h1 class="reg-head-text">Register</h1>
+                <div class="reg-1st-form">
+                    <p class="reg-uppertext">your nickname</p>
+                    <input class="reg-input-style reg-input-nick" placeholder="enter your nickname..." type="text">
+                </div>
+                <div class="reg-1st-form">
+                    <p class="reg-uppertext">your UID</p>
+                    <input class="reg-input-style reg-input-UID" placeholder="create or generate UID..." type="text">
+                </div>
+                <div class="reg-links">
+                    <h4 class="link generate-UID-link" translate="no">generate UID</h4>
+                    <h4 class="login-link link" translate="no">login</h4>
+                </div>
+                <button class="reg-sumbit-btn" translate="no">create</button>
+        </div>
+        <script src="js.js"></script>
+    </body>
+</html>
