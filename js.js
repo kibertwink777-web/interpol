@@ -15,7 +15,11 @@ let loadAnimationContainer = document.querySelector('.load-container')
 
 let regIcon = document.querySelector('.reg-icon')
 
+let regPage = document.querySelector('.reg-page')
+
 let headPage = document.querySelector('.head-page')
+
+let PAPage = document.querySelector('.personal-account-page')
 
 let data;
 
@@ -67,7 +71,7 @@ function loadElements(localData) {
             card_FT.textContent = criteries[i]
             
             if (i === 0) card_FT_Data.textContent = el.name 
-            else if(i === 1) card_FT_Data.textContent = el.reward
+            else if(i === 1) { card_FT_Data.textContent = `${el.reward} Pts`; card_FT_Data.style.color = 'rgb(219, 0, 226)'}
             else {card_FT_Data.textContent = el.status; el.status === 'active'? card_FT_Data.style.color = 'rgb(50, 230, 50)': card_FT_Data.style.color = 'red'}
 
 
@@ -127,24 +131,9 @@ errElements[errElements.length - 1].addEventListener('click', ()=> {
 })
 
 reloadLink.addEventListener('click', ()=>{
-    location.reload()
+    //location.reload()
 })
 
 
 // ДЛЯ ЕБАНОЙ РЕГИСТРАЦИИ_____________________________________________________________________________________________
-
-regIcon.addEventListener('click', ()=>{
-    console.log('yes')
-    regPage = document.querySelector('.reg-page')
-    regPage.classList.add('active')
-    headPage.classList.add('inactive')
-
-    inputUID = document.querySelector('.reg-input-UID')
-    generateUID = document.querySelector('.generate-UID-link')
-
-    generateUID.addEventListener('click',()=>{
-        inputUID.value = crypto.randomUUID()
-    })
-
-})
 
