@@ -58,6 +58,12 @@ app.post('/reg', async (req,res)=>{
     }
 })
 
+app.post('/PA', async(req,res)=>{
+    let response = await db.get('SELECT * FROM users WHERE UID = ?', [req.body.UID])
+    console.log(req.body, response)
+    res.json(response)
+})
+
 app.listen(3000, ()=>{
     0
 })
