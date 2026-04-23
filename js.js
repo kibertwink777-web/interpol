@@ -23,11 +23,21 @@ let PAPage = document.querySelector('.personal-account-page')
 
 let data;
 
+let cardTarget;
+let targetPage = document.querySelector('.target-page');
+
+//дырявые переменные цели
+let targetBackBtn = document.querySelector('.target-back')
+let targetPhoto = document.querySelector('.target-photo')
+let targetName = document.querySelector('.target-description-name')
+let targetDescription = document.querySelector('.target-description-text-data')
 function loadElements(localData) {
     searchInfo.textContent = `всего:${localData.length}`
 
     document.querySelectorAll('.card').forEach(el=> el.remove())
     localData.forEach((el,index) => {
+
+
         let card = document.createElement('div')
         card.classList.add('card')
 
@@ -49,6 +59,18 @@ function loadElements(localData) {
         
 
         gridContainer.appendChild(card)
+
+        cardTarget = document.querySelectorAll('.card')
+
+        cardTarget.forEach((elem, i) => {
+            elem.addEventListener('click', () => {
+                targetPage.classList.add('active')
+                headPage.classList.add('inactive')
+                targetPhoto.src = localData[i].link
+                targetName.textContent = localData[i].name
+                targetDescription.textContent = localData[i].description
+            })
+        })
 
         card.appendChild(photoContainer)
         card.appendChild(card_HT_Container)
@@ -135,5 +157,11 @@ reloadLink.addEventListener('click', ()=>{
 })
 
 
-// ДЛЯ ЕБАНОЙ РЕГИСТРАЦИИ_____________________________________________________________________________________________
+//ебучая страница получения информации о цели
+
+targetBackBtn.addEventListener('click', () => {
+    targetPage.classList.remove('active')
+    headPage.classList.remove('inactive')
+})
+
 

@@ -23,7 +23,7 @@ async function pizda() {
 
     //await db.exec('DROP TABLE IF EXISTS users')
 
-    await db.exec('CREATE TABLE IF NOT EXISTS targets (name TEXT, link TEXT, status TEXT, reward TEXT)')
+    await db.exec('CREATE TABLE IF NOT EXISTS targets (name TEXT, link TEXT, status TEXT, reward TEXT, description TEXT,country TEXT, progress INTEGER, subject TEXT)')
 
     await db.exec('CREATE TABLE IF NOT EXISTS users(nickname TEXT UNIQUE, UID TEXT, points INTEGER, create_time DATETIME DEFAULT CURRENT_TIMESTAMP)')
 
