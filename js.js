@@ -71,7 +71,7 @@ function loadElements(localData) {
             card_FT.textContent = criteries[i]
             
             if (i === 0) card_FT_Data.textContent = el.name 
-            else if(i === 1) { card_FT_Data.textContent = `${el.reward} Pts`; card_FT_Data.style.color = 'rgb(219, 0, 226)'}
+            else if(i === 1) { card_FT_Data.textContent = `${el.reward} Pts`; card_FT_Data.style.color = 'rgb(144, 12, 184)'}
             else {card_FT_Data.textContent = el.status; el.status === 'active'? card_FT_Data.style.color = 'rgb(50, 230, 50)': card_FT_Data.style.color = 'red'}
 
 

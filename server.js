@@ -50,7 +50,7 @@ app.post('/reg', async (req,res)=>{
     try {
         let data = await db.prepare('INSERT INTO users(nickname, UID, points) VALUES (?,?,?)')
         await data.run(req.body.nickname, req.body.UID, 0)
-        console.log(req.body)
+        console.log('registration', req.body)
         res.send()
     } catch(err) {
         console.log(err.code)
@@ -58,8 +58,17 @@ app.post('/reg', async (req,res)=>{
     }
 })
 
+app.post('/log', async(req, res)=> {
+    console.log('login', req.body)
+    let data = await db.get('SELECT * FROM users WHERE UID = ? and nickname = ?', [req.body.UID, req.body.nickname])
+
+    if (typeof(data) == 'undefined') res.sendStatus(267)
+    else res.sendStatus(200)
+})
+
 app.post('/PA', async(req,res)=>{
-    let response = await db.get('SELECT * FROM users WHERE UID = ?', [req.body.UID])
+    console.log('get Profile data', req.body)
+    let response = await db.get('SELECT * FROM users WHERE UID = ? and nickname = ?', [req.body.userData.UID, req.body.userData.nickname])
     console.log(req.body, response)
     res.json(response)
 })
