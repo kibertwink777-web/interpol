@@ -51,103 +51,146 @@
     width: 100%;
     height: 500px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 50px;
+    align-items: stretch;
+    gap: 10px;
 }
 
 .target-photo {
     width: 30%;
-    height: 400px;
+    height: auto;
     object-fit: cover;
     border-radius: 20px;
+    border: 4px solid rgb(90, 90, 90);
 }
 
 .target-description {
-    width: 40%;
-    height: 400px;
-    background:rgb(68, 68, 68);
+    width: 57%;
+    min-height: 100px;
+    height: auto;
+    background:rgb(49, 49, 51);
     border-radius: 28px;
     display: flex;
     flex-direction: column;
-
+    justify-content: space-between;
 }
 
 .target-description-name {
     font-family: "JetBrains Mono", monospace;
-    color: rgb(200,200,200);
+    color: rgb(220,220,220);
     font-size: 30px;
-    margin-left: 20px;
     margin-top: 20px;
+    text-align: center;
 }
 
 .target-description-data-cont {
     width: 100%;
-    height: auto;
+    min-height: 10px;
+    height: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 0;
 }
 
 .target-description-text-place {
     font-family: "JetBrains Mono", monospace;
-    color: rgb(171, 173, 173);
+    color: rgb(137, 138, 138);
     font-size: 18px;
     margin-left: 50px;
-    margin-top: 20px;
+    margin-top: 0px;
 }
 
 .target-description-text-data {
     font-family: "JetBrains Mono", monospace;
-    color: rgb(200,200,200);
+    color: rgb(209, 209, 209);
     font-size: 18px;
-    margin-left: 50px;
-    margin-top: 10px;
+    margin-right: 50px;
+    margin-top: 0px;
+    text-align: center;
+}
+
+.target-progress {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+
+}
+
+.target-progressBar {
+    width: 90%;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+}
+
+.target-progressBar-current {
+    width: 30%;
+    height: 50px;
+    background: rgb(209, 4, 4);
+    border-radius: 999px;
+}
+
+.target-progress-description {
+    width: 100%;
+    min-height: 50%;
+    margin-top: 50px;
+    background: rgb(47, 47, 255);
+}
+
+.target-docBtn-cont {
+    width: 100%;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.target-docBtn {
+    width: 25%;
+    height: 50px;
+    background: rgb(209, 4, 4);
+    border-radius: 999px;
+    border: 0;
+    font-family: "JetBrains Mono", monospace;
+    color: rgb(255, 255, 255);
+}
+
+.target-progressBar-headText {
+    font-family: "JetBrains Mono", monospace;
+    color: rgb(220,220,220);
 }
 
 
-@media (max-width: 1000px) {
-    .target-description-container {
-        flex-direction: column;
-        align-items: center;
-    }
+
+
+
+
+@media (max-width: 900px) {
 
     .target-description-container {
-        gap: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: auto;
     }
 
     .target-photo {
         width: 80%;
-        height: 300px;
+        height: 80vw
     }
 
     .target-description {
         width: 90%;
-        height: 400px;
-        display: flex;
-        justify-content: center;
-    }
-
-    .target-description-name {
-        text-align: center;
-        margin-left: 0;
-    }
-
-    .target-description-text-place {
-        margin-left: 0;
-        margin-top: 0;
+        height: auto
     }
 
     .target-description-text-data {
-        margin-left: 0;
-        margin-top: 0;
-        text-align: center;
+        text-align: right;
     }
-
-    .target-description-data-cont {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-    }
-
 }
+
+

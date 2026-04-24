@@ -31,6 +31,12 @@ let targetBackBtn = document.querySelector('.target-back')
 let targetPhoto = document.querySelector('.target-photo')
 let targetName = document.querySelector('.target-description-name')
 let targetDescription = document.querySelector('.target-description-text-data')
+let targetSubject = document.querySelector('.target-subject')
+let targetCountry = document.querySelector('.target-country')
+let targetReward = document.querySelector('.target-reward')
+let targetStatus = document.querySelector('.target-status')
+let targetProgressHeadText = document.querySelector('.target-progressBar-headText')
+let targetProgressBarCurrent = document.querySelector('.target-progressBar-current')
 function loadElements(localData) {
     searchInfo.textContent = `всего:${localData.length}`
 
@@ -69,6 +75,12 @@ function loadElements(localData) {
                 targetPhoto.src = localData[i].link
                 targetName.textContent = localData[i].name
                 targetDescription.textContent = localData[i].description
+                targetSubject.textContent = localData[i].subject
+                targetCountry.textContent = localData[i].country
+                targetReward.textContent = localData[i].reward; targetReward.style.color = 'rgb(144, 12, 184)'
+                targetStatus.textContent = localData[i].status; localData[i].status === 'active'? targetStatus.style.color = 'rgb(50, 230, 50)': targetStatus.style.color = 'red'
+                targetProgressHeadText.textContent = `Прогресс:${localData[i].progress}%`
+                targetProgressBarCurrent.style.width = `${localData[i].progress}%`
             })
         })
 

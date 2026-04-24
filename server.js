@@ -1,14 +1,24 @@
 
 express = require('express')
 sqlite3 = require('sqlite3')
+
+expressLimit = require('express-rate-limit')
 const { json } = require('express')
 const {open} = require('sqlite')
 cors = require('cors')
 
 app = express()
 
+const limiter = expressLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 3 // limit each IP to 100 requests per windowMs
+})
+
+app.use(limiter)
+
 app.use(cors())
 app.use(express.json())
+app.set('trust proxy', 1);
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
