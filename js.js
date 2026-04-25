@@ -26,12 +26,12 @@ let headPage = document.querySelector('.head-page')
 let PAPage = document.querySelector('.personal-account-page')
 
 let adminPage = document.querySelector('.admin-Page')
+let tierlistPage = document.querySelector('.tier-list-page')
 
 let data;
 
 let cardTarget;
 let targetPage = document.querySelector('.target-page');
-
 let adminLink = document.querySelector('.admin-only')
 let homeLink = document.querySelector('.home-link')
 //дырявые переменные цели
@@ -46,6 +46,9 @@ let targetStatus = document.querySelector('.target-status')
 let targetProgressHeadText = document.querySelector('.target-progressBar-headText')
 let targetProgressBarCurrent = document.querySelector('.target-progressBar-current')
 
+let tierListElementsContainer = document.querySelector('.tier-list-elements-container')
+
+let tierListLink = document.querySelector('.tier-list-link')
 function loadElements(localData) {
     searchInfo.textContent = `всего:${localData.length}`
 
@@ -107,19 +110,24 @@ function loadElements(localData) {
         for(let i = 0; i < 3; i++) {
             let card_FT = document.createElement('h4')
             let card_FT_Data = document.createElement('h4')
-
+            let card_FT_rewardContainer = document.createElement('div')
+            let card_FT_rewardIcon = document.createElement('img')
+            card_FT_rewardIcon.classList.add('card-footerText-rewardIcon')
+            card_FT_rewardIcon.src = 'coin.svg'
             card_FT.classList.add('card-footerText')
             card_FT_Data.classList.add('card-footerText-data')
+            card_FT_rewardContainer.classList.add('card-footerText-rewardContainer')
 
             card_FT.textContent = criteries[i]
             
-            if (i === 0) card_FT_Data.textContent = el.name 
-            else if(i === 1) { card_FT_Data.textContent = `${el.reward} Pts`; card_FT_Data.style.color = 'rgb(144, 12, 184)'}
+            if (i === 0) card_FT_Data.textContent = el.name
+            else if (i == 1) {card_FT_Data.textContent = el.reward; card_FT_Data.style.color ='rgb(218, 6, 207)'; card_FT_container.appendChild(card_FT); card_FT_container.appendChild(card_FT_rewardContainer); card_FT_rewardContainer.appendChild(card_FT_Data); card_FT_rewardContainer.appendChild(card_FT_rewardIcon)}
             else {card_FT_Data.textContent = el.status; el.status === 'active'? card_FT_Data.style.color = 'rgb(50, 230, 50)': card_FT_Data.style.color = 'red'}
 
-
-            card_FT_container.appendChild(card_FT)
-            card_FT_container.appendChild(card_FT_Data)
+            if (i !== 1) {
+                card_FT_container.appendChild(card_FT)
+                card_FT_container.appendChild(card_FT_Data)
+            }
         }
     });
 }
@@ -173,8 +181,51 @@ errElements[errElements.length - 1].addEventListener('click', ()=> {
     }
 })
 
+
+function loadTL() {
+    let rewardMass = [500, 250, 100, 50, 25, 10, 5, 3, 2, 1]
+    fetch('https://v5w54ksx-3000.euw.devtunnels.ms/tiers')
+    .then(res => res.json())
+    .then(result => {
+        tierListElementsContainer.innerHTML = ''
+        result.forEach((el, i) => {
+            let tierListElement = document.createElement('div')
+            tierListElement.classList.add('tier-list-element')
+
+            let tierListElementNumber = document.createElement('p')
+            tierListElementNumber.classList.add('tier-list-element-number', 'tier-list-element-el')
+            tierListElementNumber.textContent = i + 1
+            i == 0? tierListElementNumber.style.color = 'gold' : i == 1? tierListElementNumber.style.color = 'silver' : i == 2? tierListElementNumber.style.color = 'rgb(205, 127, 50)' : tierListElementNumber.style.color = 'white'
+
+            let tierListElementName = document.createElement('p')
+            tierListElementName.classList.add('tier-list-element-name', 'tier-list-element-el')
+            tierListElementName.textContent = result[i].nickname
+
+            let tierListElementPoints = document.createElement('p')
+            tierListElementPoints.classList.add('tier-list-element-points', 'tier-list-element-el')
+            tierListElementPoints.textContent = `${result[i].points || 0} Pts`
+
+            let tierListElementReward = document.createElement('p')
+            tierListElementReward.classList.add('tier-list-element-reward', 'tier-list-element-el')
+            tierListElementReward.textContent = rewardMass[i]
+
+            let tierListElementCreationTime = document.createElement('p')
+            tierListElementCreationTime.classList.add('tier-list-element-creationTime', 'tier-list-element-el')
+            tierListElementCreationTime.textContent = result[i].create_time
+
+            tierListElementsContainer.appendChild(tierListElement)
+            tierListElement.appendChild(tierListElementNumber)
+            tierListElement.appendChild(tierListElementName)
+            tierListElement.appendChild(tierListElementPoints)
+            tierListElement.appendChild(tierListElementReward)
+            tierListElement.appendChild(tierListElementCreationTime)
+        })
+    })
+}
+
+
 reloadLink.addEventListener('click', ()=>{
-    //location.reload()
+    location.reload()
 })
 
 
@@ -199,6 +250,7 @@ adminLink.addEventListener('click', ()=>{
     regPage.classList.remove('active')
     targetPage.classList.remove('active')
     PAPage.classList.remove('active')
+    tierlistPage.classList.remove('active')
 })
 
 homeLink.addEventListener('click', ()=>{
@@ -207,4 +259,17 @@ homeLink.addEventListener('click', ()=>{
     targetPage.classList.remove('active')
     PAPage.classList.remove('active')
     headPage.classList.remove('inactive')
+    tierlistPage.classList.remove('active')
+    moreList.classList.remove('active')
+})
+
+tierListLink.addEventListener('click', ()=>{
+    tierlistPage.classList.add('active')
+    headPage.classList.add('inactive')
+    adminPage.classList.remove('active')
+    regPage.classList.remove('active')
+    targetPage.classList.remove('active')
+    PAPage.classList.remove('active')
+    moreList.classList.remove('active')
+    loadTL()
 })

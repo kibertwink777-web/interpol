@@ -4,6 +4,7 @@
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="reg.css">
         <link rel="stylesheet" href="target.css">
+        <link rel="stylesheet" href="admin.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +25,7 @@
                 <p class="more-list-element-text">Home</p>
                 <div></div>
             </div>
-            <div class="more-list-element">
+            <div class="more-list-element tier-list-link">
                 <span class="material-symbols-outlined" translate="no">rewarded_ads</span>
                 <p class="more-list-element-text">Tier list</p>
                 <div></div>
@@ -160,8 +161,28 @@
                 </div>
             </div>
         </div>
-        <div class="admin-Page">
-
+        <div class="admin-page">
+            <div class="admin-container">
+                <h1 class="admin-headText">Admin</h1
+                <div class="admin-zero-solution-container"></div>
+                <div class="admin-btns-cont">
+                    <button class="admin-btn admin-add-target">Add target</button>
+                    <button class="admin-btn admin-remove-target">Remove target</button>
+                    <button class="admin-btn admin-edit-target">Edit target</button>
+                </div>
+            </div>
+        </div>
+        <div class="tier-list-page">
+            <div class="tier-list-container">
+                <h1 class="tier-list-headText">Tier list</h1>
+                <div class="tier-list-template">
+                    <p class="tier-list-template-element">№</p>
+                    <p class="tier-list-template-element">name</p>
+                    <p class="tier-list-template-element">points</p>
+                    <p class="tier-list-template-element">reward</p>
+                </div>
+                <div class="tier-list-elements-container"></div>
+            </div>
         </div>
         <script src="js.js"></script>
         <script src="reg.js"></script>

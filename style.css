@@ -8,6 +8,7 @@
     --card-height:400px;
     --search-container-height: 50px;
     --gray-color: rgba(94, 94, 94, 0);
+    --tier-template: 10% 10% 30% 30%;
 }
 
 body {
@@ -162,6 +163,7 @@ header {
     cursor: pointer;
     z-index: 100;
     -webkit-tap-highlight-color: transparent;
+    user-select: none;
 }
 
 .search-text:first-child {
@@ -263,6 +265,7 @@ header {
 .card-headText {
     font-family: "JetBrains Mono", monospace;
     color: rgb(230,230,230);
+    user-select: none;
 }
 
 .card-footerText-container {
@@ -279,6 +282,7 @@ header {
     margin-top: 0;
     font-family: "JetBrains Mono", monospace;
     color: rgb(200,200,200);
+    user-select: none;
 }
 
 .card-footerText-data {
@@ -286,6 +290,20 @@ header {
     font-family: "JetBrains Mono", monospace;
     color: rgb(200,200,200);
     text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.card-footerText-rewardContainer {
+    display: flex;
+    gap: 5px;
+    justify-content: right;
+}
+
+.card-footerText-rewardIcon {
+    width: 20px;
+    height: 20px;
 }
 
 .end-element {
