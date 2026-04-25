@@ -3,6 +3,8 @@ photo = document.querySelector('.photo')
 
 gridContainer = document.querySelector('.grid-container')
 
+let body = document.querySelector('body')
+
 let searchInput = document.querySelector('.search-input')
 let searchBtn = document.querySelector('.search-button')
 let searchInfo = document.querySelector('.search-info')
@@ -14,6 +16,8 @@ let reloadLink = document.querySelector('.reload')
 let loadAnimationContainer = document.querySelector('.load-container')
 
 let regIcon = document.querySelector('.reg-icon')
+let moreComs = document.querySelector('.more-coms')
+let moreList = document.querySelector('.more-list')
 
 let regPage = document.querySelector('.reg-page')
 
@@ -21,11 +25,15 @@ let headPage = document.querySelector('.head-page')
 
 let PAPage = document.querySelector('.personal-account-page')
 
+let adminPage = document.querySelector('.admin-Page')
+
 let data;
 
 let cardTarget;
 let targetPage = document.querySelector('.target-page');
 
+let adminLink = document.querySelector('.admin-only')
+let homeLink = document.querySelector('.home-link')
 //дырявые переменные цели
 let targetBackBtn = document.querySelector('.target-back')
 let targetPhoto = document.querySelector('.target-photo')
@@ -37,6 +45,7 @@ let targetReward = document.querySelector('.target-reward')
 let targetStatus = document.querySelector('.target-status')
 let targetProgressHeadText = document.querySelector('.target-progressBar-headText')
 let targetProgressBarCurrent = document.querySelector('.target-progressBar-current')
+
 function loadElements(localData) {
     searchInfo.textContent = `всего:${localData.length}`
 
@@ -176,4 +185,26 @@ targetBackBtn.addEventListener('click', () => {
     headPage.classList.remove('inactive')
 })
 
+moreComs.addEventListener('click', ()=>{
+    moreList.classList.toggle('active')
+})
 
+headPage.addEventListener('click', ()=>{
+    moreList.classList.remove('active')
+})
+
+adminLink.addEventListener('click', ()=>{
+    adminPage.classList.add('active')
+    headPage.classList.add('inactive')
+    regPage.classList.remove('active')
+    targetPage.classList.remove('active')
+    PAPage.classList.remove('active')
+})
+
+homeLink.addEventListener('click', ()=>{
+    adminPage.classList.remove('active')
+    regPage.classList.remove('active')
+    targetPage.classList.remove('active')
+    PAPage.classList.remove('active')
+    headPage.classList.remove('inactive')
+})

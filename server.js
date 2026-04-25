@@ -11,7 +11,7 @@ app = express()
 
 const limiter = expressLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 3 // limit each IP to 100 requests per windowMs
+    max: 200 // limit each IP to 100 requests per windowMs
 })
 
 app.use(limiter)
@@ -35,7 +35,7 @@ async function pizda() {
 
     await db.exec('CREATE TABLE IF NOT EXISTS targets (name TEXT, link TEXT, status TEXT, reward TEXT, description TEXT,country TEXT, progress INTEGER, subject TEXT)')
 
-    await db.exec('CREATE TABLE IF NOT EXISTS users(nickname TEXT UNIQUE, UID TEXT, points INTEGER, create_time DATETIME DEFAULT CURRENT_TIMESTAMP)')
+    await db.exec('CREATE TABLE IF NOT EXISTS users(nickname TEXT UNIQUE, UID TEXT, role TEXT, points INTEGER, create_time DATETIME DEFAULT CURRENT_TIMESTAMP)')
 
     console.log('fertige')
     //let sheet = await db.prepare('INSERT INTO users (name, link, status, reward) VALUES (?,?,?,?)')
@@ -57,9 +57,10 @@ app.get('/', async (req,res)=>{
 })
 
 app.post('/reg', async (req,res)=>{
+    if (req.body.UID.length < 8) {res.sendStatus(228); return}
     try {
-        let data = await db.prepare('INSERT INTO users(nickname, UID, points) VALUES (?,?,?)')
-        await data.run(req.body.nickname, req.body.UID, 0)
+        let data = await db.prepare('INSERT INTO users(nickname, UID, points, role) VALUES (?,?,?,?)')
+        await data.run(req.body.nickname, req.body.UID, 0, 'user')
         console.log('registration', req.body)
         res.send()
     } catch(err) {

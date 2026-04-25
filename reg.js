@@ -66,6 +66,9 @@ function profileFill(data) {
     profileCT.textContent = data.create_time.split(' ')[0]
     profileUID.textContent = data.UID
     profileBodyCont.classList.add('active')
+
+    if (data.role == 'admin') adminLink.classList.add('active')
+
     return
 }
 
@@ -164,6 +167,7 @@ goHomeBtn.addEventListener('click', ()=>{
 regIcon.addEventListener('click', ()=>{
 
     headPage.classList.add('inactive')
+    targetPage.classList.remove('active')
 
     if (localStorage.getItem('userData')) {
         PAPage.classList.add('active')
