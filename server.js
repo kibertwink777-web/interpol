@@ -84,6 +84,11 @@ app.post('/PA', async(req,res)=>{
     res.json(response)
 })
 
+app.get('/tiers', async(req,res)=>{
+    let sheet = await db.all('SELECT nickname, role, points FROM users ORDER BY points DESC LIMIT 10')
+    res.json(sheet)
+})
+
 app.listen(3000, ()=>{
     0
 })
