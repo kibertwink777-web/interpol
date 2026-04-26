@@ -166,8 +166,8 @@ goHomeBtn.addEventListener('click', ()=>{
 
 regIcon.addEventListener('click', ()=>{
 
-    headPage.classList.add('inactive')
-    targetPage.classList.remove('active')
+    pageChange()
+    regPage.classList.add('active')
 
     if (localStorage.getItem('userData')) {
         PAPage.classList.add('active')

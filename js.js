@@ -5,6 +5,8 @@ gridContainer = document.querySelector('.grid-container')
 
 let body = document.querySelector('body')
 
+let page = document.querySelectorAll('.page')
+
 let searchInput = document.querySelector('.search-input')
 let searchBtn = document.querySelector('.search-button')
 let searchInfo = document.querySelector('.search-info')
@@ -91,8 +93,8 @@ function loadElements(localData) {
                 targetCountry.textContent = localData[i].country
                 targetReward.textContent = localData[i].reward; targetReward.style.color = 'rgb(144, 12, 184)'
                 targetStatus.textContent = localData[i].status; localData[i].status === 'active'? targetStatus.style.color = 'rgb(50, 230, 50)': targetStatus.style.color = 'red'
-                targetProgressHeadText.textContent = `Прогресс:${localData[i].progress}%`
-                targetProgressBarCurrent.style.width = `${localData[i].progress}%`
+                targetProgressHeadText.textContent = `Прогресс:${localData[i].progress} / 100`
+                targetProgressBarCurrent.style.width = `${4 + 96/100 * localData[i].progress}%`
             })
         })
 
@@ -184,6 +186,7 @@ errElements[errElements.length - 1].addEventListener('click', ()=> {
 
 function loadTL() {
     let rewardMass = [500, 250, 100, 50, 25, 10, 5, 3, 2, 1]
+    tierListElementsContainer.classList.remove('active')
     fetch('https://v5w54ksx-3000.euw.devtunnels.ms/tiers')
     .then(res => res.json())
     .then(result => {
@@ -198,31 +201,48 @@ function loadTL() {
             i == 0? tierListElementNumber.style.color = 'gold' : i == 1? tierListElementNumber.style.color = 'silver' : i == 2? tierListElementNumber.style.color = 'rgb(205, 127, 50)' : tierListElementNumber.style.color = 'white'
 
             let tierListElementName = document.createElement('p')
-            tierListElementName.classList.add('tier-list-element-name', 'tier-list-element-el')
-            tierListElementName.textContent = result[i].nickname
+            let jopa = '\u200B'
+            tierListElementName.className = 'notranslate tier-list-element-name tier-list-element-el'
+            tierListElementName.textContent = `${result[i].nickname}${jopa}`
+
+            let tierListElementPointsCont = document.createElement('div')
 
             let tierListElementPoints = document.createElement('p')
+            let tierListElementPointsIcon = document.createElement('img')
+            tierListElementPointsIcon.classList.add('tier-list-element-pointsIcon')
+            tierListElementPointsIcon.src = 'coin.svg'
+            tierListElementPointsCont.classList.add('tier-list-element-pointsCont')
             tierListElementPoints.classList.add('tier-list-element-points', 'tier-list-element-el')
-            tierListElementPoints.textContent = `${result[i].points || 0} Pts`
+            tierListElementPoints.textContent = result[i].points
 
             let tierListElementReward = document.createElement('p')
             tierListElementReward.classList.add('tier-list-element-reward', 'tier-list-element-el')
             tierListElementReward.textContent = rewardMass[i]
 
-            let tierListElementCreationTime = document.createElement('p')
-            tierListElementCreationTime.classList.add('tier-list-element-creationTime', 'tier-list-element-el')
-            tierListElementCreationTime.textContent = result[i].create_time
+            let tierListElementOrders = document.createElement('p')
+            tierListElementOrders.classList.add('tier-list-element-orders', 'tier-list-element-el')
+            tierListElementOrders.textContent = result[i].orders
 
             tierListElementsContainer.appendChild(tierListElement)
             tierListElement.appendChild(tierListElementNumber)
             tierListElement.appendChild(tierListElementName)
-            tierListElement.appendChild(tierListElementPoints)
+            tierListElement.appendChild(tierListElementPointsCont)
+            tierListElementPointsCont.appendChild(tierListElementPoints)
+            tierListElementPointsCont.appendChild(tierListElementPointsIcon)
             tierListElement.appendChild(tierListElementReward)
-            tierListElement.appendChild(tierListElementCreationTime)
+            tierListElement.appendChild(tierListElementOrders)
         })
+        tierListElementsContainer.classList.add('active')
     })
 }
 
+function pageChange() {
+    page.forEach(el => {
+        if (el.classList.contains('head-page')) el.classList.add('inactive')
+            moreList.classList.remove('active')
+        el.classList.remove('active')
+    })
+}
 
 reloadLink.addEventListener('click', ()=>{
     location.reload()
@@ -245,31 +265,19 @@ headPage.addEventListener('click', ()=>{
 })
 
 adminLink.addEventListener('click', ()=>{
+    pageChange()
     adminPage.classList.add('active')
-    headPage.classList.add('inactive')
-    regPage.classList.remove('active')
-    targetPage.classList.remove('active')
-    PAPage.classList.remove('active')
-    tierlistPage.classList.remove('active')
+    
 })
 
 homeLink.addEventListener('click', ()=>{
-    adminPage.classList.remove('active')
-    regPage.classList.remove('active')
-    targetPage.classList.remove('active')
-    PAPage.classList.remove('active')
+    pageChange()
     headPage.classList.remove('inactive')
-    tierlistPage.classList.remove('active')
-    moreList.classList.remove('active')
+
 })
 
 tierListLink.addEventListener('click', ()=>{
+    pageChange()
     tierlistPage.classList.add('active')
-    headPage.classList.add('inactive')
-    adminPage.classList.remove('active')
-    regPage.classList.remove('active')
-    targetPage.classList.remove('active')
-    PAPage.classList.remove('active')
-    moreList.classList.remove('active')
     loadTL()
 })

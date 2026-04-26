@@ -41,7 +41,7 @@
             <div class="ball"></div>
             <div class="ball"></div>
         </div>
-        <div class="head-page">
+        <div class="head-page page">
             <div class="err-el-container">
                 <h1 class="err-el">ошибка загрузки файлов</h1>
                 <h3 class="err-el">проверьте подключение к интернету и <span class="reload">перезагрузите сайт</span></h3>
@@ -58,7 +58,7 @@
 
 
 
-        <div class="reg-page">
+        <div class="reg-page page">
             <div class="reg-msg-field-cont">
                 <div class="reg-msg-field">
                     <h2 class="reg-msg-headText"></h2>
@@ -85,7 +85,7 @@
                 </div>
             </div>
         </div>
-        <div class="personal-account-page">
+        <div class="personal-account-page page">
             <div class="profile-header">
                 <span class="material-symbols-outlined PA-back" translate="no">arrow_back</span>
                 <div class="profile-icon-cont">
@@ -120,7 +120,7 @@
             </div>
             <div class="profile-endEl"></div>
         </div>
-        <div class="target-page">
+        <div class="target-page page">
             <div class="target-header-container">
                 <span class="material-symbols-outlined target-back" translate="no">arrow_back</span>
             </div>
@@ -143,7 +143,10 @@
                     </div>
                     <div class="target-description-data-cont">
                         <h4 class="target-description-text-place">reward</h4>
-                        <h4 class="target-description-text-data target-reward"></h4>
+                        <div class="target-description-reward-cont target-description-text-data">
+                            <h4 class="target-description-text-data target-reward"></h4>
+                            <img class="target-reward-icon target-description-text-data" src="coin.svg">
+                        </div>
                     </div>
                     <div class="target-description-data-cont">
                         <h4 class="target-description-text-place">status</h4>
@@ -160,31 +163,43 @@
                     <div class="target-progressBar-current"></div>
                 </div>
             </div>
+            <div class="target-end-el"></div>
         </div>
-        <div class="admin-page">
+        <div class="admin-page page">
             <div class="admin-container">
-                <h1 class="admin-headText">Admin</h1
-                <div class="admin-zero-solution-container"></div>
-                <div class="admin-btns-cont">
-                    <button class="admin-btn admin-add-target">Add target</button>
-                    <button class="admin-btn admin-remove-target">Remove target</button>
-                    <button class="admin-btn admin-edit-target">Edit target</button>
+                <h1 class="admin-headText">Admin</h1>
+                <div class="admin-window">
+                    <div class="admin-add-target-container">
+                        <h1 class="admin-add-target-headText admin-headText">Add target</h1>
+                        <input class="admin-add-target-name admin-add-target" type="text" placeholder="add target name">
+                        <input class="admin-add-target-link admin-add-target" type="text" placeholder=" add target link">
+                        <input class="admin-add-target-reward admin-add-target" type="number" placeholder="add target reward">
+                        <input class="admin-add-target-country admin-add-target" type="text" placeholder=" add target country">
+                        <input class="admin-add-target-subject admin-add-target" type="text" placeholder=" add target subject">
+                        <input class="admin-add-target-status admin-add-target" type="text" placeholder=" add target status">
+                        <button class="admin-add-target-btn">Add</button>
+                    </div>
+                </div>
+                <div class="admin-options-container">
+                    <button class="admin-option admin-add-target-option"></button>
                 </div>
             </div>
         </div>
-        <div class="tier-list-page">
+        <div class="tier-list-page page">
             <div class="tier-list-container">
                 <h1 class="tier-list-headText">Tier list</h1>
                 <div class="tier-list-template">
-                    <p class="tier-list-template-element">№</p>
+                    <p class="tier-list-template-element" title="its number">№</p>
                     <p class="tier-list-template-element">name</p>
-                    <p class="tier-list-template-element">points</p>
-                    <p class="tier-list-template-element">reward</p>
+                    <p class="tier-list-template-element">pts</p>
+                    <p class="tier-list-template-element">prize</p>
+                    <p class="tier-list-template-element orders" data-text="количество всех найденных и пораженных целей ">orders</p>
                 </div>
                 <div class="tier-list-elements-container"></div>
             </div>
         </div>
         <script src="js.js"></script>
+        <script src="admin.js"></script>
         <script src="reg.js"></script>
         <script src="target.js"></script>
     </body>

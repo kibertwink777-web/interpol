@@ -8,6 +8,7 @@
     background: var(--bg);
     visibility: hidden;
     pointer-events: none;
+    transition: all 0.5s ease-out;
 }
 
 .target-page.active {
@@ -62,6 +63,7 @@
     object-fit: cover;
     border-radius: 20px;
     border: 4px solid rgb(90, 90, 90);
+    user-select: none;
 }
 
 .target-description {
@@ -99,6 +101,30 @@
     font-size: 18px;
     margin-left: 50px;
     margin-top: 0px;
+    user-select: none;
+}
+
+.target-description-reward-cont {
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: end;
+    gap: 10px;
+    
+}
+
+.target-reward {
+    text-align: right;
+    margin-right: 0 !important;
+}
+
+.target-reward-icon{
+    width: 20px;    
+    height: 20px;
+    display: flex;
+    align-items: space-between;
+    justify-content: end;
+    margin-right: 0 !important;
 }
 
 .target-description-text-data {
@@ -166,7 +192,9 @@
 
 
 
-
+.target-end-el {
+    margin-top: 100px;
+}
 
 
 @media (max-width: 900px) {

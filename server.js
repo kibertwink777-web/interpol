@@ -33,9 +33,9 @@ async function pizda() {
 
     //await db.exec('DROP TABLE IF EXISTS users')
 
-    await db.exec('CREATE TABLE IF NOT EXISTS targets (name TEXT, link TEXT, status TEXT, reward TEXT, description TEXT,country TEXT, progress INTEGER, subject TEXT)')
+    await db.exec('CREATE TABLE IF NOT EXISTS targets (name TEXT, link TEXT, status TEXT, reward TEXT DEFAULT 0, description TEXT DEFAULT "--",country TEXT, progress INTEGER DEFAULT 0, subject TEXT)')
 
-    await db.exec('CREATE TABLE IF NOT EXISTS users(nickname TEXT UNIQUE, UID TEXT, role TEXT, points INTEGER, create_time DATETIME DEFAULT CURRENT_TIMESTAMP)')
+    await db.exec('CREATE TABLE IF NOT EXISTS users(nickname TEXT UNIQUE, UID TEXT, role TEXT, points INTEGER, orders INTEGER, create_time DATETIME DEFAULT CURRENT_TIMESTAMP)')
 
     console.log('fertige')
     //let sheet = await db.prepare('INSERT INTO users (name, link, status, reward) VALUES (?,?,?,?)')
@@ -59,8 +59,8 @@ app.get('/', async (req,res)=>{
 app.post('/reg', async (req,res)=>{
     if (req.body.UID.length < 8) {res.sendStatus(228); return}
     try {
-        let data = await db.prepare('INSERT INTO users(nickname, UID, points, role) VALUES (?,?,?,?)')
-        await data.run(req.body.nickname, req.body.UID, 0, 'user')
+        let data = await db.prepare('INSERT INTO users(nickname, UID, points, orders, role) VALUES (?,?,?,?,?)')
+        await data.run(req.body.nickname, req.body.UID, 0, 0, 'user')
         console.log('registration', req.body)
         res.send()
     } catch(err) {
@@ -85,8 +85,15 @@ app.post('/PA', async(req,res)=>{
 })
 
 app.get('/tiers', async(req,res)=>{
-    let sheet = await db.all('SELECT nickname, role, points FROM users ORDER BY points DESC LIMIT 10')
+    let sheet = await db.all('SELECT nickname, role, points, orders FROM users ORDER BY points DESC LIMIT 10')
     res.json(sheet)
+})
+
+app.post('/addTarget', async(req,res)=>{
+    if (req.body.nickname !== 'admin' || req.body.UID !== '1234567$') {res.json('you are not admin small boy btw:}'); return}
+    let sheet = await db.prepare('INSERT INTO targets (name, link, status, reward, country, progress, subject) VALUES (?,?,?,?,?,?,?)')
+    await sheet.run(req.body.name, req.body.link, req.body.status, req.body.reward, req.body.country, req.body.progress, req.body.subject)
+    res.json({status: 200})
 })
 
 app.listen(3000, ()=>{
