@@ -214,3 +214,280 @@
 
 
 
+/* сюда я засуну proof, я хз зачем, и так уже полнй мусор в этом файле, но мне лень создавать новый, так что пусть будет тут, а не в новом файле, который я бы создал специально для этого*/
+
+.proof-page {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(42,42,42, 0);
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.5s ease-out;
+}
+
+.proof-page.active {
+    visibility: visible;
+    pointer-events: all;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.proof-page-visible {
+    width: 90%;
+    height: 90%;
+    background: rgb(42,42,42);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 75px;
+    border-radius: 28px;
+    overflow-x: hidden;
+}
+
+.proof-page-visible::-webkit-scrollbar {
+    width: 0px;
+    background: rgb(209, 0, 0);
+}
+
+.proof-page-visible::-webkit-scrollbar-track {
+    background: rgb(70,70,70);
+    color: rgb(70,70,70);
+    opacity: 0;
+    position: relative;
+}
+
+
+
+.proof-header {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0px;
+    box-sizing: border-box;
+    padding: 10px 20px;
+}
+
+.proof-exit {
+    font-family: "JetBrains Mono", monospace;
+    color: rgb(220,220,220);
+    font-size: 20px;
+    cursor: pointer;
+}
+.proof-exit:hover {
+    color: rgb(255,255,255);
+}
+
+.proof-name-cont {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.proof-name {
+    font-family: "JetBrains Mono", monospace;
+    color: rgb(220,220,220);
+    font-size: 30px;
+    text-align: center;
+}
+
+.proof-description-cont {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
+    margin-top: 30px;
+    box-sizing: border-box;
+    padding: 0 20px;
+}
+
+.proof-description {
+    font-family: "JetBrains Mono", monospace;
+    color: rgb(175, 174, 174);
+    font-size: 20px;
+    text-align: center;
+    text-align: center;
+    display: flex;
+    margin-top: 0;
+    justify-content: start;
+}
+
+.proof-description-textarea {
+    width: 90%;
+    height:150px;
+    border: 0;
+    border-radius: 24px;
+    font-family: "JetBrains Mono", monospace;
+    background: rgb(60,60,60);
+    font-size: 18px;
+    box-sizing: border-box;
+    padding: 10px 10px;
+    color: rgb(220,220,220);
+    font-weight: 700;
+}
+
+.proof-description-textarea:focus {
+    outline: none;
+}
+
+.proof-description-textarea::placeholder {
+    font-size: 16px;
+}
+
+.proof-send-file {
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: opacity 0.5s ease;
+}
+
+.go-inactive.inactive {
+    opacity: 0;
+
+}
+
+.proof-send-file-phantom {
+    width: 100%;
+    height: auto;
+    margin-top: -60px;
+    pointer-events: none;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 20px;
+    font-weight: 800;
+    color: rgb(220,220,220);
+    text-decoration: underline;
+}
+.proof-upload-file {
+    width: 200px;
+    height: 75px;
+    border: 4px solid rgb(211, 0, 0);
+    border-radius: 999px;
+    font-family: "JetBrains Mono", monospace;
+    background: rgb(42,42,42);
+    margin-top: 65px;
+    pointer-events: all;
+    color: rgb(255, 0, 0);
+    font-size: 20px;
+    font-weight: 800;
+    box-shadow: 6px 5px 4px rgba(0, 0, 0, 0.1) !important;
+    transition: scale 0.5s ease-out;
+    animation: bt 5s ease-in-out infinite;
+}
+
+.proof-upload-file:hover {
+    scale: 1.1;
+}
+
+.proof-send-file-input {
+    border: 0;
+    border-radius: 24px;
+    width: 200px;
+    height: 20px;
+    border-radius: 999px;
+    font-family: "JetBrains Mono", monospace;
+    background: rgb(42,42,42);
+    min-height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+
+
+.proof-send-file-headText {
+    font-family: "JetBrains Mono", monospace;
+    color: rgb(220,220,220);
+    font-size: 20px;
+}
+
+.proof-loading-video-cont {
+    width: 100%;
+    min-height: 50px;
+    position: absolute;
+    /*background: rgba(255,0,0,0.1);*/
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    transition: opacity 0.5s ease;
+    margin-top: -250px;
+}
+
+.proof-loading-video-cont.active {
+    opacity: 1;
+    z-index: 9999;
+}
+
+.proof-loading-video-headText {
+    font-family: "JetBrains Mono", monospace;
+    color: rgb(211, 211, 211);
+    font-size: 20px;
+    text-align: center;
+}
+
+.proof-loading-video-footerText {
+    font-family: "JetBrains Mono", monospace;
+    color: rgb(167, 167, 167);
+    font-size: 18px;
+    text-align: center;
+    margin-top: 0;
+}
+
+.proof-loading-anim {
+    width:100%;
+    height: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.proof-ball {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgb(218, 2, 2);
+    animation: proof-balls 2s infinite ease-in-out;
+}
+
+.proof-ball:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.proof-ball:last-child {
+    animation-delay: 0.6s;
+}
+
+
+@keyframes proof-balls {
+    0%, 100% {
+        transform: translateY(0%) scaleX(100%);
+    }
+    30% {
+        transform: translateY(-300%) scaleX(85%);
+    }
+    60% {
+        transform: translateY(20%) scaleX(115%);
+    }
+}

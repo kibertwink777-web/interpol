@@ -30,6 +30,11 @@
                 <p class="more-list-element-text">Tier list</p>
                 <div></div>
             </div>
+            <div class="more-list-element proof-link">
+                <span class="material-symbols-outlined" translate="no">verified</span>
+                <p class="more-list-element-text">Confirm target neutralized</p>
+                <div></div>
+            </div>
             <div class="more-list-element admin-only">
                 <span class="material-symbols-outlined" translate="no">admin_panel_settings</span>
                 <p class="more-list-element-text">Admin</p>
@@ -196,6 +201,39 @@
                     <p class="tier-list-template-element orders" data-text="количество всех найденных и пораженных целей ">orders</p>
                 </div>
                 <div class="tier-list-elements-container"></div>
+            </div>
+        </div>
+        <div class="proof-page page">
+            <div class="proof-page-visible">
+                <div class="proof-header">
+                    <div></div>
+                    <span class="material-symbols-outlined proof-exit" translate="no">close</span>
+                </div>
+                <div class="proof-name-cont">
+                    <h1 class="proof-name">Confirm target neutralized</h1>
+                </div>
+                <div class="proof-description-cont">
+                    <h3 class="proof-description go-inactive">description of destroying target *</h3>
+                    <textarea class="proof-description-textarea go-inactive" placeholder="send your description (time, place, the name of target and other details)..." ></textarea>
+                </div>
+                <div class="proof-target-name-cont"></div>
+                <div class="proof-send-file">
+                    <div class="proof-loading-video-cont">
+                        
+                        <p class="proof-loading-video-headText">Uploading your file...</p>
+                        <p class="proof-loading-video-footerText">please, wait a few seconds</p>
+                        <div class="proof-loading-anim">
+                            <div class="proof-ball"></div>
+                            <div class="proof-ball"></div>
+                            <div class="proof-ball"></div>
+                        </div>
+                    </div>
+                    <h3 class="proof-send-file-headText go-inactive">upload your proof file</h3>
+                    <input type="file" class="proof-send-file-input go-inactive">
+                    <div class="proof-send-file-phantom go-inactive">choose your file</div>
+                    <button class="proof-upload-file go-inactive">Upload file</button>
+                    <div class="target-end-el"></div>
+                </div>
             </div>
         </div>
         <script src="js.js"></script>

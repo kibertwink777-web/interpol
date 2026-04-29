@@ -51,6 +51,9 @@ let targetProgressBarCurrent = document.querySelector('.target-progressBar-curre
 let tierListElementsContainer = document.querySelector('.tier-list-elements-container')
 
 let tierListLink = document.querySelector('.tier-list-link')
+
+let targetDocBtn = document.querySelector('.target-docBtn')
+
 function loadElements(localData) {
     searchInfo.textContent = `всего:${localData.length}`
 
@@ -135,7 +138,7 @@ function loadElements(localData) {
 }
 
 function load() {
-    fetch('https://v5w54ksx-3000.euw.devtunnels.ms/')
+    fetch('https://pst-plaza-dir-feeds.trycloudflare.com/')
     .then(res => res.json())
     .then((result) => {
         console.log(result)
@@ -187,7 +190,7 @@ errElements[errElements.length - 1].addEventListener('click', ()=> {
 function loadTL() {
     let rewardMass = [500, 250, 100, 50, 25, 10, 5, 3, 2, 1]
     tierListElementsContainer.classList.remove('active')
-    fetch('https://v5w54ksx-3000.euw.devtunnels.ms/tiers')
+    fetch('https://pst-plaza-dir-feeds.trycloudflare.com/tiers')
     .then(res => res.json())
     .then(result => {
         tierListElementsContainer.innerHTML = ''
@@ -236,11 +239,14 @@ function loadTL() {
     })
 }
 
+localStorage.removeItem('userData')
+
 function pageChange() {
     page.forEach(el => {
         if (el.classList.contains('head-page')) el.classList.add('inactive')
             moreList.classList.remove('active')
         el.classList.remove('active')
+        tierListElementsContainer.classList.remove('active')
     })
 }
 

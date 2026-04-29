@@ -129,6 +129,8 @@ header {
     box-sizing: border-box;
     padding: 0 20px;
     transition: background 0.4s ease-out;
+    text-align: center;
+    
 }
 
 .more-list-element-text {
@@ -246,7 +248,7 @@ header {
     width: 100%;
     height: 100%;
     border-radius: 10px;
-    filter: grayscale(50%);
+    filter: grayscale(100%);
     transition: all 0.9s ease-out;
     user-select: none;
 }

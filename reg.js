@@ -74,7 +74,7 @@ function profileFill(data) {
 
 function getProfile() {
     let userData = JSON.parse(localStorage.getItem('userData'))
-    fetch('https://v5w54ksx-3000.euw.devtunnels.ms/PA', {
+    fetch('https://pst-plaza-dir-feeds.trycloudflare.com/PA', {
         method: 'POST',
         headers: {'Content-type':'application/json'},
         body: JSON.stringify({userData})
@@ -92,7 +92,7 @@ regSumbitBtn.addEventListener('click', (event)=>{
 
         if (inputNickname.value !== '' &&  regType == 'reg' && inputUID.value.length>= 8) {
 
-            fetch('https://v5w54ksx-3000.euw.devtunnels.ms/reg', {
+            fetch('https://pst-plaza-dir-feeds.trycloudflare.com/reg', {
                 method: 'POST',
                 headers: {'Content-type':'application/json'},
                 body: JSON.stringify({nickname : inputNickname.value, UID: inputUID.value})
@@ -112,7 +112,7 @@ regSumbitBtn.addEventListener('click', (event)=>{
 
             })
         } else if (regType == 'log') {
-            fetch('https://v5w54ksx-3000.euw.devtunnels.ms/log', {
+            fetch('https://pst-plaza-dir-feeds.trycloudflare.com/log', {
                 method: 'POST',
                 headers: {'Content-type': 'application/json'}, 
                 body: JSON.stringify({UID: inputUID.value, nickname: inputNickname.value})
@@ -165,7 +165,7 @@ goHomeBtn.addEventListener('click', ()=>{
 })
 
 regIcon.addEventListener('click', ()=>{
-
+    if (regPage.classList.contains('active') || PAPage.classList.contains('active')) { pageChange(); headPage.classList.remove('inactive'); return }
     pageChange()
     regPage.classList.add('active')
 

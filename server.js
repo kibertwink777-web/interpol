@@ -1,12 +1,27 @@
 
+
 express = require('express')
 sqlite3 = require('sqlite3')
+fs = require('fs')
+pc = require('picocolors')
+
+
+const { HttpsProxyAgent } = require('https-proxy-agent');
+
+
+
+
 
 expressLimit = require('express-rate-limit')
 const { json } = require('express')
-const {open} = require('sqlite')
+const multer = require('multer')
+const {open} = require('sqlite');
+const { stream } = require('undici');
+const picocolors = require('picocolors');
 cors = require('cors')
 
+
+const multerHueta = multer({ dest: 'C:/Users/SystemX/Desktop/pidors' })
 app = express()
 
 const limiter = expressLimit({
@@ -17,7 +32,8 @@ const limiter = expressLimit({
 app.use(limiter)
 
 app.use(cors())
-app.use(express.json())
+app.use(express.json({limit: '150mb'}))
+app.use(express.urlencoded({limit: '150mb', extended: true}))
 app.set('trust proxy', 1);
 
 app.use((req, res, next) => {
@@ -57,7 +73,7 @@ app.get('/', async (req,res)=>{
 })
 
 app.post('/reg', async (req,res)=>{
-    if (req.body.UID.length < 8) {res.sendStatus(228); return}
+    if (req.body.UID.length < 8) {res.sendStatus(269); return}
     try {
         let data = await db.prepare('INSERT INTO users(nickname, UID, points, orders, role) VALUES (?,?,?,?,?)')
         await data.run(req.body.nickname, req.body.UID, 0, 0, 'user')
@@ -94,6 +110,49 @@ app.post('/addTarget', async(req,res)=>{
     let sheet = await db.prepare('INSERT INTO targets (name, link, status, reward, country, progress, subject) VALUES (?,?,?,?,?,?,?)')
     await sheet.run(req.body.name, req.body.link, req.body.status, req.body.reward, req.body.country, req.body.progress, req.body.subject)
     res.json({status: 200})
+})
+
+app.post('/sendProof', multerHueta.single('file'), async(req,res)=>{
+    console.log(req.file)
+
+    let formDataHuina = new FormData()
+
+    let blobZalupaSrteam = await fs.openAsBlob(req.file.path)
+
+    let fileType;
+    req.file.mimetype == 'video/mp4'? fileType = 'video' : fileType = 'photo'
+
+    formDataHuina.append(fileType, blobZalupaSrteam, req.file.originalname)
+
+
+    const proxyUrl = 'https:alo.acharbashi.info:4515';
+
+    const agent = new HttpsProxyAgent(proxyUrl);
+
+    formDataHuina.append('chat_id', '5662962785')
+
+    try {
+   const response = await fetch(`https://api.telegram.org/bot8693141080:AAHDcFn3NpwJOlV0vtbftW0EfeddsNyUacA/send${fileType}`, {
+        method: 'POST',
+        headers: {'Proxy-Authorization': 'eee9a4f23b1d768c04a8d7f39120ca5b6e626973636f7474692e79656b74616e65742e636f6d'},
+        body: formDataHuina
+       // agent: agent
+   })
+
+   let result = await response.json()
+
+   console.log(result, pc.green('по идее дошло, на практике хз'))
+
+   }catch(err) {
+        console.log(pc.red('error'), err)
+        res.sendStatus(299)
+    }
+
+    await fs.unlink(req.file.path, (err)=> {
+        console.log(err)
+    })
+
+    res.sendStatus(200)
 })
 
 app.listen(3000, ()=>{
