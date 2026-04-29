@@ -54,6 +54,14 @@ let tierListLink = document.querySelector('.tier-list-link')
 
 let targetDocBtn = document.querySelector('.target-docBtn')
 
+let proofPage = document.querySelector('.proof-page')
+let proofPageVisible = document.querySelector('.proof-page-visible')
+
+let proofSendFile = document.querySelector('.proof-send-file')
+let proofLoadingVideoCont = document.querySelector('.proof-loading-video-cont')
+let goInactive = document.querySelectorAll('.go-inactive')
+let proofMsgCont = document.querySelector('.proof-msg-cont')
+
 function loadElements(localData) {
     searchInfo.textContent = `всего:${localData.length}`
 
@@ -239,14 +247,17 @@ function loadTL() {
     })
 }
 
-localStorage.removeItem('userData')
 
 function pageChange() {
+    proofMsgCont.classList.remove('active')
+    proofLoadingVideoCont.classList.remove('active')
+    goInactive.forEach(el => el.classList.remove('inactive'))
     page.forEach(el => {
         if (el.classList.contains('head-page')) el.classList.add('inactive')
-            moreList.classList.remove('active')
+        moreList.classList.remove('active')
         el.classList.remove('active')
         tierListElementsContainer.classList.remove('active')
+        proofPageVisible.classList.remove('active')
     })
 }
 

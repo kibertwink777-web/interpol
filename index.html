@@ -16,7 +16,10 @@
         <header>
             <span class="material-symbols-outlined header-icon more-coms">more_horiz</span>
             <h1 class="header-text">Interpol</h1>
-            <span class="material-symbols-outlined reg-icon header-icon" translate="no">person</span>
+            <div class="header-right-side-cont">
+                <span class="material-symbols-outlined msg-icon header-icon">mark_email_unread</span>
+                <span class="material-symbols-outlined reg-icon header-icon" translate="no">person</span>
+            </div>
         </header>
         <div class="more-list">
             <h1 class="more-list-headText">More</h1>
@@ -204,7 +207,7 @@
             </div>
         </div>
         <div class="proof-page page">
-            <div class="proof-page-visible">
+            <div class="proof-page-visible page">
                 <div class="proof-header">
                     <div></div>
                     <span class="material-symbols-outlined proof-exit" translate="no">close</span>
@@ -219,7 +222,6 @@
                 <div class="proof-target-name-cont"></div>
                 <div class="proof-send-file">
                     <div class="proof-loading-video-cont">
-                        
                         <p class="proof-loading-video-headText">Uploading your file...</p>
                         <p class="proof-loading-video-footerText">please, wait a few seconds</p>
                         <div class="proof-loading-anim">
@@ -227,6 +229,12 @@
                             <div class="proof-ball"></div>
                             <div class="proof-ball"></div>
                         </div>
+                    </div>
+                    <div class="proof-msg-cont">
+                        <h3 class="proof-msg-headText">Successfully!</h3>
+                        <h4 class="proof-msg-underText">your proof file was uploaded and administrator will check it soon</h4>
+                        <span class="material-symbols-outlined proof-msg-icon">check_circle</span>
+                        <button class="reg-msg-btn proof-go-home">Go home</button>
                     </div>
                     <h3 class="proof-send-file-headText go-inactive">upload your proof file</h3>
                     <input type="file" class="proof-send-file-input go-inactive">

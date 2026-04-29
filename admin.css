@@ -226,6 +226,7 @@
     visibility: hidden;
     pointer-events: none;
     transition: all 0.5s ease-out;
+    opacity: 0;
 }
 
 .proof-page.active {
@@ -237,6 +238,7 @@
     gap: 0px;
     overflow-y: auto;
     overflow-x: hidden;
+    opacity: 1;
 }
 
 .proof-page-visible {
@@ -249,6 +251,7 @@
     margin-top: 75px;
     border-radius: 28px;
     overflow-x: hidden;
+    transition: all 0.5s ease-out;
 }
 
 .proof-page-visible::-webkit-scrollbar {
@@ -359,7 +362,7 @@
 
 .go-inactive.inactive {
     opacity: 0;
-
+    pointer-events: none;
 }
 
 .proof-send-file-phantom {
@@ -376,13 +379,13 @@
 .proof-upload-file {
     width: 200px;
     height: 75px;
-    border: 4px solid rgb(211, 0, 0);
+    border: 4px solid rgba(211, 0, 0, 0.2);
     border-radius: 999px;
     font-family: "JetBrains Mono", monospace;
     background: rgb(42,42,42);
     margin-top: 65px;
     pointer-events: all;
-    color: rgb(255, 0, 0);
+    color: rgba(255, 0, 0, 0.2);
     font-size: 20px;
     font-weight: 800;
     box-shadow: 6px 5px 4px rgba(0, 0, 0, 0.1) !important;
@@ -490,4 +493,46 @@
     60% {
         transform: translateY(20%) scaleX(115%);
     }
+}
+
+.proof-msg-cont {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease out;
+    margin-top: -250px;
+    gap: 15px;
+}
+
+.proof-msg-cont.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.proof-msg-headText {
+    font-family: "JetBrains Mono", monospace;
+    color: rgb(230, 230, 230);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.proof-msg-underText {
+    font-family: "JetBrains Mono", monospace;
+    color: rgb(200,200,200);
+    font-size: 18px;
+    margin-top: 0;
+}
+
+.proof-msg-icon {
+    font-size: 120px !important;
+    color: rgb(0, 255, 0);
+}
+
+.proof-go-home {
+    margin-top: 25px;
 }

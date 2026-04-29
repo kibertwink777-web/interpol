@@ -112,8 +112,21 @@ app.post('/addTarget', async(req,res)=>{
     res.json({status: 200})
 })
 
+app.post('/preSendProof', async(req,res)=>{
+    let data = await db.get('SELECT * FROM users WHERE UID = ? and nickname = ?', [req.body.UID, req.body.nickname])
+    if (data == null) {res.sendStatus(298); return}
+    res.sendStatus(200)
+})
+
 app.post('/sendProof', multerHueta.single('file'), async(req,res)=>{
     console.log(req.file)
+
+    let userData = JSON.parse(req.body.userData)
+    let nickname = userData.nickname
+    let UID = userData.UID
+
+    let data = await db.get('SELECT * FROM users WHERE UID = ? and nickname = ?', [UID, nickname])
+    if (data == null) {res.sendStatus(298); return}
 
     let formDataHuina = new FormData()
 
@@ -123,7 +136,7 @@ app.post('/sendProof', multerHueta.single('file'), async(req,res)=>{
     req.file.mimetype == 'video/mp4'? fileType = 'video' : fileType = 'photo'
 
     formDataHuina.append(fileType, blobZalupaSrteam, req.file.originalname)
-
+    formDataHuina.append('caption', `${req.body.desc} - ${userData.nickname},  ${userData.UID}`)
 
     const proxyUrl = 'https:alo.acharbashi.info:4515';
 
@@ -146,6 +159,7 @@ app.post('/sendProof', multerHueta.single('file'), async(req,res)=>{
    }catch(err) {
         console.log(pc.red('error'), err)
         res.sendStatus(299)
+        return;
     }
 
     await fs.unlink(req.file.path, (err)=> {
