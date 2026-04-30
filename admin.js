@@ -45,7 +45,7 @@ async function proofMsgBox(type, code) {
 }
 
 addTargetBtn.addEventListener('click', ()=>{
-    fetch('https://pst-plaza-dir-feeds.trycloudflare.com/addTarget', {
+    fetch(`${CLOUDFLARE_EBANAYA_ZALUPA}/addTarget`, {
         method: 'POST',
         headers: {'Content-type':'application/json'},
         body: JSON.stringify({nickname: localStorage.getItem('nickname'), UID: localStorage.getItem('UID'), name: AdmininputName.value, link: AdmininputLink.value, reward: AdmininputReward.value, country: AdmininputCountry.value, subject: AdmininputSubject.value, status: AdmininputStatus.value})
@@ -135,7 +135,7 @@ proofSendFileBtn.addEventListener('click', async()=>{
     proofSendFilePhantom.textContent = 'choose your file'
 
     if (localStorage.getItem('userData')) {
-        let result = await fetch('https://pst-plaza-dir-feeds.trycloudflare.com/preSendProof', {
+        let result = await fetch(`${CLOUDFLARE_EBANAYA_ZALUPA}/preSendProof`, {
             method: 'POST',
             headers: {'Content-type':'application/json'},
             body: JSON.stringify({nickname: JSON.parse(localStorage.getItem('userData')).nickname, UID: JSON.parse(localStorage.getItem('userData')).UID})
@@ -149,7 +149,7 @@ proofSendFileBtn.addEventListener('click', async()=>{
     }
 
 
-    await fetch('https://pst-plaza-dir-feeds.trycloudflare.com/sendProof', {
+    await fetch(`${CLOUDFLARE_EBANAYA_ZALUPA}/sendProof`, {
         method: 'POST',
         body: formData
     })

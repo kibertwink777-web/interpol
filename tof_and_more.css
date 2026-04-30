@@ -1,0 +1,108 @@
+
+.terms-of-service-page {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 99999;
+    transition: opacity 0.8s ease-out;
+}
+
+.terms-of-service-page.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.terms-of-service-page-visible {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    margin-top: calc(var(--header-height) + 20px);
+    transition: opacity 0.5s ease-out;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(30px);
+    border-radius: 20px;
+    border: 2px solid red;
+}
+
+.terms-of-service-header {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.terms-of-service-header-text {
+    font-family: "JetBrains Mono", monospace;
+    color: rgb(220,220,220);
+    font-size: 24px;
+    margin-top: 0px;
+    text-align: center;
+}
+
+.terms-of-service-body {
+    width: 100%;
+    height: 75%;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 0 10px
+}
+
+.terms-of-service-minHeader-text {
+    font-family: "JetBrains Mono", monospace;
+    color: rgb(204, 204, 204);
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.terms-of-service-boldText {
+    font-family: "JetBrains Mono", monospace;
+    color: rgb(196, 196, 196);
+    font-size: 18px;
+    width: 100%;
+    text-align: start;
+    font-weight: 700;
+    font-style: bold;
+    margin-bottom: 0;
+}
+
+.terms-of-service-text {
+    font-family: "JetBrains Mono", monospace;
+    color: rgb(196, 196, 196);
+    font-size: 16px;
+    width: 100%;
+    text-align: start;
+}
+
+.terms-of-service-accept-btn-cont {
+    width: 100%;
+    height: 15%;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.terms-of-service-accept-btn {
+    width: 200px;
+    height: 50px;
+    border: 3px solid rgb(223, 0, 0);
+    border-radius: 24px;
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 600;
+    font-size: 20px;
+    background: transparent;
+    color: rgb(223, 0, 0);
+
+}

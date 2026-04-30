@@ -60,7 +60,7 @@ function regMsg(type, code) {
 function profileFill(data) {
     console.log('ok')
     profileNickname.textContent = `@${data.nickname}`
-    //profileStatus.textContent = data.status
+    profileStatus.textContent = data.role
     profilePoints.textContent = data.points; profilePoints.style.color = 'rgb(144, 12, 184)'
     profileTLPosition.textContent = '--'
     profileCT.textContent = data.create_time.split(' ')[0]
@@ -74,7 +74,7 @@ function profileFill(data) {
 
 function getProfile() {
     let userData = JSON.parse(localStorage.getItem('userData'))
-    fetch('https://pst-plaza-dir-feeds.trycloudflare.com/PA', {
+    fetch(`${CLOUDFLARE_EBANAYA_ZALUPA}/PA`, {
         method: 'POST',
         headers: {'Content-type':'application/json'},
         body: JSON.stringify({userData})
@@ -92,7 +92,7 @@ regSumbitBtn.addEventListener('click', (event)=>{
 
         if (inputNickname.value !== '' &&  regType == 'reg' && inputUID.value.length>= 8) {
 
-            fetch('https://pst-plaza-dir-feeds.trycloudflare.com/reg', {
+            fetch(`${CLOUDFLARE_EBANAYA_ZALUPA}/reg`, {
                 method: 'POST',
                 headers: {'Content-type':'application/json'},
                 body: JSON.stringify({nickname : inputNickname.value, UID: inputUID.value})
@@ -112,7 +112,7 @@ regSumbitBtn.addEventListener('click', (event)=>{
 
             })
         } else if (regType == 'log') {
-            fetch('https://pst-plaza-dir-feeds.trycloudflare.com/log', {
+            fetch(`${CLOUDFLARE_EBANAYA_ZALUPA}/log`, {
                 method: 'POST',
                 headers: {'Content-type': 'application/json'}, 
                 body: JSON.stringify({UID: inputUID.value, nickname: inputNickname.value})

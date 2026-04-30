@@ -21,7 +21,7 @@ const picocolors = require('picocolors');
 cors = require('cors')
 
 
-const multerHueta = multer({ dest: 'C:/Users/SystemX/Desktop/pidors' })
+const multerHueta = multer({dest: 'C:/Users/SystemX/Desktop/pidors' })
 app = express()
 
 const limiter = expressLimit({

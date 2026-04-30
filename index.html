@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="reg.css">
         <link rel="stylesheet" href="target.css">
         <link rel="stylesheet" href="admin.css">
+        <link rel="stylesheet" href="tof_and_more.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +15,10 @@
     </head>
     <body>
         <header>
-            <span class="material-symbols-outlined header-icon more-coms">more_horiz</span>
+            <div class="header-left-side-cont">
+                <span class="material-symbols-outlined header-icon more-coms">more_horiz</span>
+                <div class="zatichka"></div>
+            </div>
             <h1 class="header-text">Interpol</h1>
             <div class="header-right-side-cont">
                 <span class="material-symbols-outlined msg-icon header-icon">mark_email_unread</span>
@@ -188,11 +192,37 @@
                         <button class="admin-add-target-btn">Add</button>
                     </div>
                 </div>
-                <div class="admin-options-container">
-                    <button class="admin-option admin-add-target-option"></button>
+            </div>
+            <div class="admin-options-cont">
+                <button class="admin-option admin-add-target-option">Add target</button>
+                <button class="admin-option admin-send-message">send message</button>
+                <button class="admin-option admin-approve-proof">approve users proof</button>
+            </div>
+        </div>
+        <div class="terms-of-service-page page">
+            <div class="terms-of-service-page-visible">
+                <div class="terms-of-service-header">
+                    <div class="terms-of-service-header-text">Terms of service</div>
+                </div>
+                <div class="terms-of-service-body">
+                    <h3 class="terms-of-service-minHeader-text" translate="no">Disclaimer</h3>
+                    <h5 class="terms-of-service-boldText">1. General Information</h5>
+                    <p class="terms-of-service-text">This project is provided for educational, research, and entertainment purposes only. All content within this application, including but not limited to names, images, and descriptions, is purely fictional and intended as a satirical or "meme" project. Any resemblance to real persons, living or dead, or actual events is purely coincidental.</p>
+                    <h5 class="terms-of-service-boldText">2. No Encouragement of Illegal Acts</h5>
+                    <p class="terms-of-service-text">This project does not encourage, incite, or promote any form of violence, illegal activity, or violations of any local, national, or international laws. The terms used within the application (e.g., "target," "neutralized," "reward") are part of a fictional game-like narrative and must not be interpreted as a call to action in the real world.</p>
+                    <h5 class="terms-of-service-boldText">3. Limitation of Liability</h5>
+                    <p class="terms-of-service-text">The author of this project shall not be held responsible or liable for any misuse of the information provided, nor for any damage (mental, physical, or technical) caused by the use of this software. By using this application, you agree that you do so at your own risk.</p>
+                    <h5 class="terms-of-service-boldText">4. No Warranties</h5>
+                    <p class="terms-of-service-text">The software is provided "as is," without warranty of any kind, express or implied, including but not limited to the warranties of merchantability or fitness for a particular purpose. In no event shall the author be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the software or the use of other dealings in the software.</p>
+                    <h5 class="terms-of-service-boldText">5. External Links and Content</h5>
+                    <p class="terms-of-service-text">The author does not take responsibility for content uploaded by users or linked from external sources. Users are solely responsible for their interactions and the data they provide.</p>
+                </div>
+                <div class="terms-of-service-accept-btn-cont">
+                    <button class="terms-of-service-accept-btn">Accept</button>
                 </div>
             </div>
         </div>
+
         <div class="tier-list-page page">
             <div class="tier-list-container">
                 <h1 class="tier-list-headText">Tier list</h1>
@@ -233,7 +263,7 @@
                     <div class="proof-msg-cont">
                         <h3 class="proof-msg-headText">Successfully!</h3>
                         <h4 class="proof-msg-underText">your proof file was uploaded and administrator will check it soon</h4>
-                        <span class="material-symbols-outlined proof-msg-icon">check_circle</span>
+                        <span class="material-symbols-outlined proof-msg-icon" translate="no">check_circle</span>
                         <button class="reg-msg-btn proof-go-home">Go home</button>
                     </div>
                     <h3 class="proof-send-file-headText go-inactive">upload your proof file</h3>

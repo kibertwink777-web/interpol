@@ -2,11 +2,15 @@
     width: 100%;
     height: 100%;
     position: absolute;
+    display: flex;
+    flex-direction: column;
     top: 0;
     left: 0;
     background: var(--bg);
     visibility: hidden;
     pointer-events: none;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .admin-page.active {
@@ -16,12 +20,14 @@
 
 .admin-container {
     width: 100%;
-    height: 100%;
+    height: auto;
     box-sizing: border-box;
     padding-top: 75px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
+    flex-shrink: 0;
 }
 
 .admin-headText {
@@ -73,16 +79,30 @@
     background: linear-gradient(135deg, rgb(209, 4, 182) 0%, rgb(0, 217, 255) 100%);
 }
 
-.admin-options-container {
-    width:100%;
+.admin-options-cont {
+    width: 100%;
     height: auto;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+    gap: 10px;
+    flex-shrink: 0;
 }
 
 .admin-option {
-    width: 90%;
-    height:50px;
-    background: rgb(68, 68, 68);
+    width: 300px;
+    height: 75px;
+    font-family: 'JetBrains Mono', monospace;
+    background: rgb(31, 31, 31);
+    font-size: 24px;
+    color: rgb(231, 11, 11);
+    border-radius: 28px;
+    border: 4px solid rgb(207, 11, 11);
+    cursor: pointer;
 }
+
 
 .tier-list-page {
     width: 100%;
@@ -531,6 +551,7 @@
 .proof-msg-icon {
     font-size: 120px !important;
     color: rgb(0, 255, 0);
+    translate: no;
 }
 
 .proof-go-home {

@@ -1,4 +1,6 @@
 
+let CLOUDFLARE_EBANAYA_ZALUPA = 'https://ment-cumulative-scanner-agreement.trycloudflare.com'
+
 photo = document.querySelector('.photo')
 
 gridContainer = document.querySelector('.grid-container')
@@ -61,6 +63,17 @@ let proofSendFile = document.querySelector('.proof-send-file')
 let proofLoadingVideoCont = document.querySelector('.proof-loading-video-cont')
 let goInactive = document.querySelectorAll('.go-inactive')
 let proofMsgCont = document.querySelector('.proof-msg-cont')
+
+let termsOfSevicePage = document.querySelector('.terms-of-service-page')
+let termsOfServiceAcceptBtn = document.querySelector('.terms-of-service-accept-btn')
+
+localStorage.getItem('termsOfService')? console.log('accepted') : termsOfSevicePage.classList.add('active')
+
+termsOfServiceAcceptBtn.addEventListener('click', ()=>{
+    console.log('accept')
+    termsOfSevicePage.classList.remove('active')
+    localStorage.setItem('termsOfService', 'true')
+})
 
 function loadElements(localData) {
     searchInfo.textContent = `всего:${localData.length}`
@@ -146,7 +159,7 @@ function loadElements(localData) {
 }
 
 function load() {
-    fetch('https://pst-plaza-dir-feeds.trycloudflare.com/')
+    fetch(`${CLOUDFLARE_EBANAYA_ZALUPA}/`)
     .then(res => res.json())
     .then((result) => {
         console.log(result)
@@ -198,7 +211,7 @@ errElements[errElements.length - 1].addEventListener('click', ()=> {
 function loadTL() {
     let rewardMass = [500, 250, 100, 50, 25, 10, 5, 3, 2, 1]
     tierListElementsContainer.classList.remove('active')
-    fetch('https://pst-plaza-dir-feeds.trycloudflare.com/tiers')
+    fetch(`${CLOUDFLARE_EBANAYA_ZALUPA}/tiers`)
     .then(res => res.json())
     .then(result => {
         tierListElementsContainer.innerHTML = ''
