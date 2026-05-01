@@ -106,3 +106,137 @@
     color: rgb(223, 0, 0);
 
 }
+
+.messages-page {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease-out;
+}
+
+.messages-page.active {
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
+}
+
+.messages-page-visible {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    margin-top: 95px;
+    background: rgb(30, 32, 32);
+    border-radius: 20px;
+}
+
+.messages-header {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    box-sizing: border-box;
+    padding-top: 15px;
+}
+
+.messages-headText {
+    font-family: "JetBrains Mono", monospace;
+    color: rgb(220,220,220);
+    font-size: 28px;
+    text-align: center;
+    
+}
+
+.messages-page::selection {
+    background: rgb(80, 80, 80);
+}
+
+.messages-body {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    overflow-y: auto;
+    transition: all 0.7s ease-out;
+    gap: 15px;
+}
+
+.messages-body-el {
+    width: 90%;
+    max-height: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: rgba(51, 51, 51, 0.1);
+    border-radius: 20px;
+    border: 2px solid rgb(233, 6, 6);
+    box-sizing: border-box;
+    gap: 15px;
+    padding: 5px 10px;
+    overflow: hidden;
+}
+
+.messages-body-el-geminiUeban {
+    max-height: 100%;
+    transition: all 4s ease-out;
+}
+
+.messages-body-el-headText {
+    font-family: "JetBrains Mono", monospace;
+    color: rgb(220,220,220);
+    font-size: 20px;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 2px;
+}
+
+.messages-body-el-footerText {
+    overflow: hidden;
+    font-family: "JetBrains Mono", monospace;
+    color: rgb(196, 196, 196);
+    font-size: 16px;
+    text-align: start;
+    margin-top: 0;
+    margin-bottom: 0;
+    transition: all 0.5s ease-out;
+    -webkit-mask-image: linear-gradient(to bottom, rgb(30,32,32) 40%, transparent 100%);
+}
+
+.messages-body-el-dateCont {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    bottom: 10px;
+}
+
+.messages-full-msg {
+    font-size: 26px;
+    cursor: pointer;
+    color: rgb(204, 204, 204);
+    user-select: none;
+    transition: all 0.5s ease-out;
+}
+
+.messages-body-el-date {
+    font-family: "JetBrains Mono", monospace;
+    color: rgb(170, 170, 170);
+    font-size: 14px;
+    text-align: end;
+    margin-top: 0;
+    margin-bottom: 0;
+}

@@ -57,6 +57,14 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    opacity: 0;
+    display: none;
+}
+
+.admin-add-target-container.active {
+    opacity: 1;
+    display: flex;
+    opacity: 1;
 }
 
 .admin-add-target {
@@ -78,6 +86,61 @@
     font-family: "JetBrains Mono", monospace;
     background: linear-gradient(135deg, rgb(209, 4, 182) 0%, rgb(0, 217, 255) 100%);
 }
+
+.admin-send-message-cont {
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    opacity: 0;
+    display: none;
+}
+
+.admin-send-message-cont.active {
+    opacity: 1;
+    display: flex;
+    opacity: 1;
+}
+
+.admin-approve-proof-cont {
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    opacity: 0;
+    display: none;
+}
+
+.admin-approve-proof-cont.active {
+    opacity: 1;
+    display: flex;
+    opacity: 1;
+}
+
+.admin-approve-proof-input {
+    width: 90%;
+    height: 50px;
+    border: 0;
+    border-radius: 24px;
+    font-family: "JetBrains Mono", monospace;
+    color: rgb(255, 255, 255);
+    font-weight: 900;
+    background: rgb(20,20,20);
+}
+
+.admin-approve-proof-btn {
+    width: 150px;
+    height:65px;
+    border: 0;
+    border-radius: 28px;
+    font-family: "JetBrains Mono", monospace;
+    background: linear-gradient(135deg, rgb(209, 4, 182) 0%, rgb(0, 217, 255) 100%);
+}
+
 
 .admin-options-cont {
     width: 100%;
@@ -103,6 +166,14 @@
     cursor: pointer;
 }
 
+.admin-send-message-btn {
+    width: 150px;
+    height:65px;
+    border: 0;
+    border-radius: 28px;
+    font-family: "JetBrains Mono", monospace;
+    background: linear-gradient(135deg, rgb(209, 4, 182) 0%, rgb(0, 217, 255) 100%);
+}
 
 .tier-list-page {
     width: 100%;

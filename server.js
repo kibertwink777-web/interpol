@@ -53,6 +53,7 @@ async function pizda() {
 
     await db.exec('CREATE TABLE IF NOT EXISTS users(nickname TEXT UNIQUE, UID TEXT, role TEXT, points INTEGER, orders INTEGER, create_time DATETIME DEFAULT CURRENT_TIMESTAMP)')
 
+    await db.exec('CREATE TABLE IF NOT EXISTS messages(headText TEXT, footText TEXT, date DATETIME DEFAULT CURRENT_TIMESTAMP)')
     console.log('fertige')
     //let sheet = await db.prepare('INSERT INTO users (name, link, status, reward) VALUES (?,?,?,?)')
     //sheet.run('сомов','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmjsgDBbLYhRrNYbdd3689-1HvN8f8oSsybQ&s','passed','5267Р')
@@ -105,11 +106,29 @@ app.get('/tiers', async(req,res)=>{
     res.json(sheet)
 })
 
-app.post('/addTarget', async(req,res)=>{
+app.post('/admin', async(req,res)=>{
+    console.log(req.body)
     if (req.body.nickname !== 'admin' || req.body.UID !== '1234567$') {res.json('you are not admin small boy btw:}'); return}
-    let sheet = await db.prepare('INSERT INTO targets (name, link, status, reward, country, progress, subject) VALUES (?,?,?,?,?,?,?)')
-    await sheet.run(req.body.name, req.body.link, req.body.status, req.body.reward, req.body.country, req.body.progress, req.body.subject)
-    res.json({status: 200})
+
+    if (req.body.type == 'addTarget') {
+        let sheet = await db.prepare('INSERT INTO targets (name, link, status, reward, country, progress, subject) VALUES (?,?,?,?,?,?,?)')
+        await sheet.run(req.body.name, req.body.link, req.body.status, req.body.reward, req.body.country, req.body.progress, req.body.subject)
+        res.json({status: 200})
+        } else if (req.body.type == 'approveProof') {
+            let data = db.run('UPDATE users SET points = points + ? WHERE nickname = ?', [req.body.points, req.body.nicknameUser])
+            console.log(`admin approved proof, nickname: ${req.body.nickname}, points: ${req.body.points}`)
+            res.json({status: 200})
+        } else if(req.body.type == 'sendMsg') {
+            let sheet = await db.prepare('INSERT INTO messages (headText, footText) VALUES (?, ?)', [req.body.msgHeadText, req.body.msgFooterText])
+            console.log(req.body)
+            await sheet.run()
+            res.json({status: 200})
+        }
+})
+
+app.get('/messages', async(req,res)=>{
+    let sheet = await db.all('SELECT * FROM messages')
+    res.json(sheet)
 })
 
 app.post('/preSendProof', async(req,res)=>{

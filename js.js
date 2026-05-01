@@ -1,5 +1,5 @@
 
-let CLOUDFLARE_EBANAYA_ZALUPA = 'https://ment-cumulative-scanner-agreement.trycloudflare.com'
+let CLOUDFLARE_EBANAYA_ZALUPA = 'https://roommate-road-restored-sandwich.trycloudflare.com'
 
 photo = document.querySelector('.photo')
 

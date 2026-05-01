@@ -20,6 +20,26 @@ let proofMsgUnderText = document.querySelector('.proof-msg-underText')
 let proofGoHomeBtn = document.querySelector('.proof-go-home')
 let proofMsgIcon = document.querySelector('.proof-msg-icon')
 
+let approveOption = document.querySelector('.admin-approve-proof')
+let adminApproveProofCont = document.querySelector('.admin-approve-proof-cont')
+let adminAddTargetContainer = document.querySelector('.admin-add-target-container')
+
+let adminAddTargetOption = document.querySelector('.admin-add-target-option')
+let adminApproveProofOption = document.querySelector('.admin-approve-proof-option')
+
+let adminOption = document.querySelectorAll('.admin-option')
+
+let adminWindowElement = document.querySelectorAll('.admin-window-element')
+
+let approveNickname = document.querySelector('.admin-approve-proof-nickname')
+let approvePoints = document.querySelector('.admin-approve-proof-points')
+let approveProofBtn = document.querySelector('.admin-approve-proof-btn')
+
+let sendMsgOption = document.querySelector('.admin-send-message-option')
+
+let adminSendMsgCont = document.querySelector('.admin-send-message-cont')
+let adminSendMsgBtn = document.querySelector('.admin-send-message-btn')
+
 console.log('sosooooooooooo')
 
 async function proofMsgBox(type, code) {
@@ -45,10 +65,10 @@ async function proofMsgBox(type, code) {
 }
 
 addTargetBtn.addEventListener('click', ()=>{
-    fetch(`${CLOUDFLARE_EBANAYA_ZALUPA}/addTarget`, {
+    fetch(`${CLOUDFLARE_EBANAYA_ZALUPA}/admin`, {
         method: 'POST',
         headers: {'Content-type':'application/json'},
-        body: JSON.stringify({nickname: localStorage.getItem('nickname'), UID: localStorage.getItem('UID'), name: AdmininputName.value, link: AdmininputLink.value, reward: AdmininputReward.value, country: AdmininputCountry.value, subject: AdmininputSubject.value, status: AdmininputStatus.value})
+        body: JSON.stringify({type: 'addTarget', nickname: localStorage.getItem('nickname'), UID: localStorage.getItem('UID'), name: AdmininputName.value, link: AdmininputLink.value, reward: AdmininputReward.value, country: AdmininputCountry.value, subject: AdmininputSubject.value, status: AdmininputStatus.value})
     })
     .then(res => res.json())
     .then(result => {
@@ -165,3 +185,46 @@ proofSendFileBtn.addEventListener('click', async()=>{
         }
     })
 })
+
+
+adminOption.forEach((el, index) => {
+    el.addEventListener('click', ()=>{
+        adminWindowElement.forEach(el => el.classList.remove('active'))
+        adminWindowElement[index].classList.add('active')
+    })
+})
+
+approveProofBtn.addEventListener('click', ()=>{
+    let nick = approveNickname.value
+    let points = approvePoints.value
+    let userData = JSON.parse(localStorage.getItem('userData'))
+    fetch(`${CLOUDFLARE_EBANAYA_ZALUPA}/admin`, {
+        method: 'POST',
+        headers: {'Content-type':'application/json'},
+        body: JSON.stringify({type: 'approveProof',
+             nickname: userData.nickname,
+              UID: userData.UID,
+               nicknameUser: nick,
+                points: points})
+    })
+    .then(res => res.json())
+    .then(result => console.log(result))
+})
+
+adminSendMsgBtn.addEventListener('click', ()=>{
+    let msgHeadText = document.querySelector('.admin-send-message-HT-input').value
+    let msgFooterText = document.querySelector('.admin-send-message-FT-input').value
+    let userData = JSON.parse(localStorage.getItem('userData'))
+    fetch(`${CLOUDFLARE_EBANAYA_ZALUPA}/admin`, {
+        method: 'POST',
+        headers: {'Content-type':'application/json'},
+        body: JSON.stringify({type: 'sendMsg',
+             nickname: userData.nickname,
+              UID: userData.UID,
+               msgHeadText: msgHeadText,
+                msgFooterText: msgFooterText})
+    })
+    .then(res => res.json())
+    .then(result => console.log(result))
+})
+

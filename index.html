@@ -16,7 +16,7 @@
     <body>
         <header>
             <div class="header-left-side-cont">
-                <span class="material-symbols-outlined header-icon more-coms">more_horiz</span>
+                <span class="material-symbols-outlined header-icon more-coms" translate="no">more_horiz</span>
                 <div class="zatichka"></div>
             </div>
             <h1 class="header-text">Interpol</h1>
@@ -181,7 +181,7 @@
             <div class="admin-container">
                 <h1 class="admin-headText">Admin</h1>
                 <div class="admin-window">
-                    <div class="admin-add-target-container">
+                    <div class="admin-add-target-container admin-window-element">
                         <h1 class="admin-add-target-headText admin-headText">Add target</h1>
                         <input class="admin-add-target-name admin-add-target" type="text" placeholder="add target name">
                         <input class="admin-add-target-link admin-add-target" type="text" placeholder=" add target link">
@@ -191,12 +191,24 @@
                         <input class="admin-add-target-status admin-add-target" type="text" placeholder=" add target status">
                         <button class="admin-add-target-btn">Add</button>
                     </div>
+                    <div class="admin-send-message-cont admin-window-element">
+                        <h1 class="admin-send-message-headText admin-headText">Send message</h1>
+                        <input class="admin-send-message-HT-input admin-approve-proof-input" type="text" placeholder="enter your msg head text...">
+                        <input class="admin-send-message-FT-input admin-approve-proof-input" type="text" placeholder="enter your msg footer text...">
+                        <button class="admin-send-message-btn">Send message</button>
+                    </div>
+                    <div class="admin-approve-proof-cont admin-window-element">
+                        <h1 class="admin-approve-proof-headText admin-headText">Approve users proof</h1>
+                        <input class="admin-approve-proof-nickname admin-approve-proof-input" type="text" placeholder="enter user nickname">
+                        <input class="admin-approve-proof-points admin-approve-proof-input" type="number" placeholder="enter plus points">
+                        <button class="admin-approve-proof-btn">Approve</button>
+                    </div>
                 </div>
             </div>
             <div class="admin-options-cont">
                 <button class="admin-option admin-add-target-option">Add target</button>
-                <button class="admin-option admin-send-message">send message</button>
-                <button class="admin-option admin-approve-proof">approve users proof</button>
+                <button class="admin-option admin-send-message-option">send message</button>
+                <button class="admin-option admin-approve-proof-option">approve users proof</button>
             </div>
         </div>
         <div class="terms-of-service-page page">
@@ -274,9 +286,19 @@
                 </div>
             </div>
         </div>
+        <div class="messages-page page">
+            <div class="messages-page-visible">
+                <div class="messages-header">
+                    <h1 class="messages-headText">Messages</h1>
+                </div>
+                <div class="messages-body">
+                </div>
+            </div>
+        </div>
         <script src="js.js"></script>
         <script src="admin.js"></script>
         <script src="reg.js"></script>
         <script src="target.js"></script>
+        <script src="tof_and_more.js"></script>
     </body>
 </html>
