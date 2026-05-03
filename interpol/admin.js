@@ -40,6 +40,8 @@ let sendMsgOption = document.querySelector('.admin-send-message-option')
 let adminSendMsgCont = document.querySelector('.admin-send-message-cont')
 let adminSendMsgBtn = document.querySelector('.admin-send-message-btn')
 
+let adminDestroyedTarget = document.querySelector('.admin-approve-proof-destroyed-target')
+
 console.log('sosooooooooooo')
 
 async function proofMsgBox(type, code) {
@@ -197,6 +199,7 @@ adminOption.forEach((el, index) => {
 approveProofBtn.addEventListener('click', ()=>{
     let nick = approveNickname.value
     let points = approvePoints.value
+    let destroyedTarget = adminDestroyedTarget.value
     let userData = JSON.parse(localStorage.getItem('userData'))
     fetch(`${CLOUDFLARE_EBANAYA_ZALUPA}/admin`, {
         method: 'POST',
@@ -205,7 +208,9 @@ approveProofBtn.addEventListener('click', ()=>{
              nickname: userData.nickname,
               UID: userData.UID,
                nicknameUser: nick,
-                points: points})
+                points: points, 
+                destroyedTarget: destroyedTarget
+            })
     })
     .then(res => res.json())
     .then(result => console.log(result))

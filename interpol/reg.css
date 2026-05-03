@@ -201,6 +201,7 @@
     pointer-events: none;
     background: var(--bg);
     overflow-y: auto;
+    opacity: 0;
 }
 
 .personal-account-page.active {
@@ -209,6 +210,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    opacity: 1;
 }
 
 .profile-header {

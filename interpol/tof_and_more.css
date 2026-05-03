@@ -143,11 +143,22 @@
     width: 100%;
     height: 20%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 5px;
     box-sizing: border-box;
-    padding-top: 15px;
+    padding: 15px 20px;
+}
+
+.messages-back {
+    font-size: 24px !important;
+    color: rgb(220,220,220);
+    cursor: pointer;
+}
+
+.messages-o {
+    width:24px;
+    height: 24px;
 }
 
 .messages-headText {
@@ -186,11 +197,10 @@
     box-sizing: border-box;
     gap: 15px;
     padding: 5px 10px;
-    overflow: hidden;
 }
 
 .messages-body-el-geminiUeban {
-    max-height: 100%;
+    max-height: 1000%;
     transition: all 4s ease-out;
 }
 
@@ -212,12 +222,12 @@
     margin-top: 0;
     margin-bottom: 0;
     transition: all 0.5s ease-out;
-    -webkit-mask-image: linear-gradient(to bottom, rgb(30,32,32) 40%, transparent 100%);
+    line-height: 30px;
 }
 
 .messages-body-el-dateCont {
     width: 100%;
-    height: 20%;
+    height: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;

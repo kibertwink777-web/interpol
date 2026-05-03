@@ -1,5 +1,5 @@
 
-let CLOUDFLARE_EBANAYA_ZALUPA = 'https://roommate-road-restored-sandwich.trycloudflare.com'
+let CLOUDFLARE_EBANAYA_ZALUPA = 'https://promise-century-exact-merely.trycloudflare.com'
 
 photo = document.querySelector('.photo')
 
@@ -115,7 +115,7 @@ function loadElements(localData) {
                 targetDescription.textContent = localData[i].description
                 targetSubject.textContent = localData[i].subject
                 targetCountry.textContent = localData[i].country
-                targetReward.textContent = localData[i].reward; targetReward.style.color = 'rgb(144, 12, 184)'
+                targetReward.textContent = localData[i].reward; targetReward.style.color = 'rgb(218, 6, 207)'
                 targetStatus.textContent = localData[i].status; localData[i].status === 'active'? targetStatus.style.color = 'rgb(50, 230, 50)': targetStatus.style.color = 'red'
                 targetProgressHeadText.textContent = `Прогресс:${localData[i].progress} / 100`
                 targetProgressBarCurrent.style.width = `${4 + 96/100 * localData[i].progress}%`
@@ -159,7 +159,7 @@ function loadElements(localData) {
 }
 
 function load() {
-    fetch(`${CLOUDFLARE_EBANAYA_ZALUPA}/`)
+    fetch(`${CLOUDFLARE_EBANAYA_ZALUPA}/basic`)
     .then(res => res.json())
     .then((result) => {
         console.log(result)
@@ -209,11 +209,13 @@ errElements[errElements.length - 1].addEventListener('click', ()=> {
 
 
 function loadTL() {
-    let rewardMass = [500, 250, 100, 50, 25, 10, 5, 3, 2, 1]
+    let rewardMass = [500, 250, 100, 75, 50, 25,15,'--','--','--']
     tierListElementsContainer.classList.remove('active')
     fetch(`${CLOUDFLARE_EBANAYA_ZALUPA}/tiers`)
     .then(res => res.json())
     .then(result => {
+        localStorage.setItem('tierList', JSON.stringify(result))
+
         tierListElementsContainer.innerHTML = ''
         result.forEach((el, i) => {
             let tierListElement = document.createElement('div')
@@ -227,11 +229,13 @@ function loadTL() {
             let tierListElementName = document.createElement('p')
             let jopa = '\u200B'
             tierListElementName.className = 'notranslate tier-list-element-name tier-list-element-el'
+            tierListElementName.classList.add('tierlist-name')
             tierListElementName.textContent = `${result[i].nickname}${jopa}`
 
             let tierListElementPointsCont = document.createElement('div')
 
             let tierListElementPoints = document.createElement('p')
+            tierListElementPoints.style.color = 'rgb(218, 6, 207)'
             let tierListElementPointsIcon = document.createElement('img')
             tierListElementPointsIcon.classList.add('tier-list-element-pointsIcon')
             tierListElementPointsIcon.src = 'coin.svg'
@@ -239,9 +243,16 @@ function loadTL() {
             tierListElementPoints.classList.add('tier-list-element-points', 'tier-list-element-el')
             tierListElementPoints.textContent = result[i].points
 
+            let tierListElementRewardCont = document.createElement('div')
+            tierListElementRewardCont.classList.add('tier-list-element-rewardCont')
+
             let tierListElementReward = document.createElement('p')
             tierListElementReward.classList.add('tier-list-element-reward', 'tier-list-element-el')
             tierListElementReward.textContent = rewardMass[i]
+
+            let tierListElementRewardIcon = document.createElement('img')
+            tierListElementRewardIcon.src = 'telegram-star.svg'
+            tierListElementRewardIcon.classList.add('tier-list-element-rewardIcon')
 
             let tierListElementOrders = document.createElement('p')
             tierListElementOrders.classList.add('tier-list-element-orders', 'tier-list-element-el')
@@ -253,7 +264,9 @@ function loadTL() {
             tierListElement.appendChild(tierListElementPointsCont)
             tierListElementPointsCont.appendChild(tierListElementPoints)
             tierListElementPointsCont.appendChild(tierListElementPointsIcon)
-            tierListElement.appendChild(tierListElementReward)
+            tierListElement.appendChild(tierListElementRewardCont)
+            tierListElementRewardCont.appendChild(tierListElementReward)
+            tierListElementRewardCont.appendChild(tierListElementRewardIcon)
             tierListElement.appendChild(tierListElementOrders)
         })
         tierListElementsContainer.classList.add('active')

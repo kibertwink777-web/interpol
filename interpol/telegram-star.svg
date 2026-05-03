@@ -1,0 +1,23 @@
+<svg width="245" height="230" viewBox="0 0 245 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_d_3_56)">
+<path d="M105.604 16.1759C107.955 10.3206 116.244 10.3207 118.595 16.1759L140.204 69.9856C141.205 72.479 143.545 74.1793 146.226 74.361L204.079 78.2838C210.375 78.7107 212.936 86.5939 208.094 90.6396L163.595 127.819C161.533 129.541 160.639 132.292 161.295 134.898L175.442 191.132C176.981 197.251 170.275 202.123 164.931 198.768L115.821 167.937C113.546 166.508 110.653 166.508 108.377 167.937L59.2672 198.768C53.9233 202.123 47.2174 197.251 48.7568 191.132L62.9037 134.898C63.5593 132.292 62.6654 129.541 60.6034 127.819L16.1048 90.6396C11.2626 86.5939 13.8241 78.7107 20.1194 78.2838L77.9728 74.361C80.6536 74.1793 82.9938 72.479 83.9951 69.9856L105.604 16.1759Z" fill="url(#paint0_linear_3_56)"/>
+</g>
+<path d="M40.9325 118.011C41.4456 117.263 42.2696 116.787 43.174 116.717L114.361 111.184C117.546 110.937 118.86 115.176 116.094 116.773L4.52141 181.19C1.75496 182.787 -1.25939 179.529 0.547376 176.895L40.9325 118.011Z" fill="#1E2020"/>
+<defs>
+<filter id="filter0_d_3_56" x="9.58255" y="11.7845" width="205.034" height="196.079" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_3_56"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_3_56" result="shape"/>
+</filter>
+<linearGradient id="paint0_linear_3_56" x1="55.0993" y1="11" x2="151.099" y2="230" gradientUnits="userSpaceOnUse">
+<stop offset="0.230769" stop-color="#FAE711"/>
+<stop offset="0.669836" stop-color="#F4A50F"/>
+<stop offset="1" stop-color="#EE630D"/>
+</linearGradient>
+</defs>
+</svg>

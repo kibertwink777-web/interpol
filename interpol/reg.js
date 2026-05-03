@@ -24,6 +24,7 @@ let profileCT = document.querySelector('.profile-creationTime')
 let profileUID = document.querySelector('.profile-UID')
 let profileBodyCont = document.querySelector('.profile-body-cont')
 
+let profileOrders = document.querySelector('.profile-orders')
 //check login or reg
 let regType = 'reg'
 
@@ -61,8 +62,8 @@ function profileFill(data) {
     console.log('ok')
     profileNickname.textContent = `@${data.nickname}`
     profileStatus.textContent = data.role
-    profilePoints.textContent = data.points; profilePoints.style.color = 'rgb(144, 12, 184)'
-    profileTLPosition.textContent = '--'
+    profilePoints.textContent = data.points; profilePoints.style.color = 'rgb(218, 6, 207)'
+    profileOrders.textContent = data.orders
     profileCT.textContent = data.create_time.split(' ')[0]
     profileUID.textContent = data.UID
     profileBodyCont.classList.add('active')
@@ -90,6 +91,13 @@ regSumbitBtn.addEventListener('click', (event)=>{
         console.log('ok')
         event.preventDefault();
 
+        let jopa = new PasswordCredential({
+            id: inputNickname.value,
+            password: inputUID.value
+        })
+
+        navigator.credentials.store(jopa)
+
         if (inputNickname.value !== '' &&  regType == 'reg' && inputUID.value.length>= 8) {
 
             fetch(`${CLOUDFLARE_EBANAYA_ZALUPA}/reg`, {
@@ -107,8 +115,11 @@ regSumbitBtn.addEventListener('click', (event)=>{
                 } else if(result.status == 200) {
                     regMsg(0, result.status)
                     localStorage.setItem('userData', JSON.stringify({UID:inputUID.value, nickname:inputNickname.value}))
-                }
-                else regMsg(1, result.status)
+                } else if (result.status == 269) {
+                    inputNickname.classList.add('red')
+                    inputNickname.value = ''
+                    inputNickname.placeholder = 'THIS NICKNAME IS TOO LONG'
+                } else regMsg(1, result.status)
 
             })
         } else if (regType == 'log') {
@@ -166,13 +177,17 @@ goHomeBtn.addEventListener('click', ()=>{
 
 regIcon.addEventListener('click', ()=>{
     if (regPage.classList.contains('active') || PAPage.classList.contains('active')) { pageChange(); headPage.classList.remove('inactive'); return }
-    pageChange()
-    regPage.classList.add('active')
+
+    
 
     if (localStorage.getItem('userData')) {
+        pageChange()
         PAPage.classList.add('active')
         getProfile()
         return;
+    } else {
+        pageChange()
+        regPage.classList.add('active')
     }
 
     console.log('yes')

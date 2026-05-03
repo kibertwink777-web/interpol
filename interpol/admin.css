@@ -294,10 +294,27 @@
     user-select: none;
 }
 
+.tier-list-element-rewardCont {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.tier-list-element-rewardIcon {
+    width: 22px;
+    height: 22px;
+}
+
 @media (max-width: 500px) {
     .tier-list-template-element {
         font-size: 14px;
         font-weight: 500;
+    }
+    .tierlist-name {
+        font-size: 14px;
     }
 }
 

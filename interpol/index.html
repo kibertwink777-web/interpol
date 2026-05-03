@@ -16,15 +16,20 @@
     <body>
         <header>
             <div class="header-left-side-cont">
-                <span class="material-symbols-outlined header-icon more-coms" translate="no">more_horiz</span>
+                <span class="material-symbols-outlined header-icon more-coms" translate="no" >more_horiz</span>
                 <div class="zatichka"></div>
             </div>
             <h1 class="header-text">Interpol</h1>
             <div class="header-right-side-cont">
-                <span class="material-symbols-outlined msg-icon header-icon">mark_email_unread</span>
+                <span class="material-symbols-outlined msg-icon header-icon" translate="no">mark_email_unread</span>
                 <span class="material-symbols-outlined reg-icon header-icon" translate="no">person</span>
             </div>
         </header>
+        <div class="min-message">
+            <div></div>
+            <h2 class="min-message-headText"></h2>
+            <span class="material-symbols-outlined min-message-close" translate="no">close</span>
+        </div>
         <div class="more-list">
             <h1 class="more-list-headText">More</h1>
             <div class="more-list-element home-link">
@@ -39,7 +44,7 @@
             </div>
             <div class="more-list-element proof-link">
                 <span class="material-symbols-outlined" translate="no">verified</span>
-                <p class="more-list-element-text">Confirm target neutralized</p>
+                <p class="more-list-element-text">Confirm goal reached</p>
                 <div></div>
             </div>
             <div class="more-list-element admin-only">
@@ -87,7 +92,7 @@
                     </div>
                     <div class="reg-1st-form">
                         <p class="reg-uppertext">your UID</p>
-                        <input class="reg-input-style reg-input-UID" placeholder="create or generate UID..." type="text">
+                        <input class="reg-input-style reg-input-UID" placeholder="create or generate UID..." type="text" autocomplete="new-password" name="password">
                     </div>
                     <div class="reg-links">
                         <h4 class="link generate-UID-link" translate="no">generate UID</h4>
@@ -101,7 +106,7 @@
             <div class="profile-header">
                 <span class="material-symbols-outlined PA-back" translate="no">arrow_back</span>
                 <div class="profile-icon-cont">
-                    <i class="fa-solid fa-user profile-icon"></i>
+                    <i class="fa-solid fa-user profile-icon" translate="no"></i>
                 </div>
                 <div></div>
             </div>
@@ -118,8 +123,8 @@
                     <p class="profile-infoText profile-points"></p>
                 </div>
                 <div class="profile-info">
-                    <p class="profile-infoPlace">Rank:</p>
-                    <p class="profile-infoText profile-topList-position" translate="no"></p>
+                    <p class="profile-infoPlace">Orders:</p>
+                    <p class="profile-infoText profile-orders" translate="no"></p>
                 </div>
                 <div class="profile-info">
                     <p class="profile-infoPlace">Joined:</p>
@@ -165,7 +170,7 @@
                         <h4 class="target-description-text-data target-status"></h4>
                     </div>
                     <div class="target-docBtn-cont">
-                        <button class="target-docBtn">Обоссать</button>
+                        <button class="target-docBtn">found target</button>
                     </div>
                 </div>
             </div>
@@ -201,6 +206,7 @@
                         <h1 class="admin-approve-proof-headText admin-headText">Approve users proof</h1>
                         <input class="admin-approve-proof-nickname admin-approve-proof-input" type="text" placeholder="enter user nickname">
                         <input class="admin-approve-proof-points admin-approve-proof-input" type="number" placeholder="enter plus points">
+                        <input class="admin-approve-proof-destroyed-target admin-approve-proof-input" type="number" placeholder="enter destroyed target">
                         <button class="admin-approve-proof-btn">Approve</button>
                     </div>
                 </div>
@@ -289,7 +295,9 @@
         <div class="messages-page page">
             <div class="messages-page-visible">
                 <div class="messages-header">
+                    <span class="material-symbols-outlined messages-back" translate="no">arrow_back</span>
                     <h1 class="messages-headText">Messages</h1>
+                    <div class="messages-o"></div>
                 </div>
                 <div class="messages-body">
                 </div>
