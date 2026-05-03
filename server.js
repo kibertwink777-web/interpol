@@ -1,10 +1,10 @@
 
 
-express = require('express')
-sqlite3 = require('sqlite3')
-fs = require('fs')
-pc = require('picocolors')
-
+const express = require('express')
+const sqlite3 = require('sqlite3')
+const fs = require('fs')
+const pc = require('picocolors')
+const path = require('path')
 
 const { HttpsProxyAgent } = require('https-proxy-agent');
 
@@ -21,12 +21,12 @@ const picocolors = require('picocolors');
 cors = require('cors')
 
 
-const multerHueta = multer({dest: 'C:/Users/SystemX/Desktop/pidors' })
+const multerHueta = multer({dest: path.join(__dirname, 'interpol', 'pidors') })
 app = express()
 
 const limiter = expressLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 200 // limit each IP to 100 requests per windowMs
+    max: 100 // limit each IP to 100 requests per windowMs
 })
 
 app.use(limiter)
@@ -35,6 +35,7 @@ app.use(cors())
 app.use(express.json({limit: '150mb'}))
 app.use(express.urlencoded({limit: '150mb', extended: true}))
 app.set('trust proxy', 1);
+app.use(express.static(path.join(__dirname, 'interpol')))
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -43,7 +44,7 @@ app.use((req, res, next) => {
 
 async function pizda() {
     db = await open({
-        filename: '../firstDB',
+        filename: path.join(__dirname, 'firstDB'),
         driver: sqlite3.Database
     })
 
@@ -68,6 +69,10 @@ app.post('/test', (req,res)=>{
 })
 
 app.get('/', async (req,res)=>{
+    await res.sendFile(path.join(__dirname, 'interpol', 'index.html'))
+})
+
+app.get('/basic', async(req,res)=>{
     let sheet = await db.prepare('SELECT * FROM targets')
     data = await sheet.all()
     res.json(data)
@@ -75,6 +80,7 @@ app.get('/', async (req,res)=>{
 
 app.post('/reg', async (req,res)=>{
     if (req.body.UID.length < 8) {res.sendStatus(269); return}
+    if (req.body.nickname.length >= 16) {res.sendStatus(269); return}
     try {
         let data = await db.prepare('INSERT INTO users(nickname, UID, points, orders, role) VALUES (?,?,?,?,?)')
         await data.run(req.body.nickname, req.body.UID, 0, 0, 'user')
@@ -108,7 +114,7 @@ app.get('/tiers', async(req,res)=>{
 
 app.post('/admin', async(req,res)=>{
     console.log(req.body)
-    if (req.body.nickname !== 'admin' || req.body.UID !== '1234567$') {res.json('you are not admin small boy btw:}'); return}
+    if (req.body.nickname !== 'admin' || req.body.UID !== 'AlexSer1982@@$$') {res.json('you are not admin small boy btw:}'); return}
 
     if (req.body.type == 'addTarget') {
         let sheet = await db.prepare('INSERT INTO targets (name, link, status, reward, country, progress, subject) VALUES (?,?,?,?,?,?,?)')
@@ -116,6 +122,8 @@ app.post('/admin', async(req,res)=>{
         res.json({status: 200})
         } else if (req.body.type == 'approveProof') {
             let data = db.run('UPDATE users SET points = points + ? WHERE nickname = ?', [req.body.points, req.body.nicknameUser])
+            let targetProgress = db.run('UPDATE targets SET progress = progress + ? WHERE reward = ?', [1, req.body.points])
+            let order = db.run('UPDATE users set orders = orders + ? WHERE nickname = ?', [1, req.body.nicknameUser])
             console.log(`admin approved proof, nickname: ${req.body.nickname}, points: ${req.body.points}`)
             res.json({status: 200})
         } else if(req.body.type == 'sendMsg') {
@@ -178,6 +186,7 @@ app.post('/sendProof', multerHueta.single('file'), async(req,res)=>{
    }catch(err) {
         console.log(pc.red('error'), err)
         res.sendStatus(299)
+        await fs.unlink()
         return;
     }
 
