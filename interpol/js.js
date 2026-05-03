@@ -1,5 +1,5 @@
 
-let CLOUDFLARE_EBANAYA_ZALUPA = 'https://promise-century-exact-merely.trycloudflare.com'
+let CLOUDFLARE_EBANAYA_ZALUPA = 'https://interpol-production.up.railway.app'
 
 photo = document.querySelector('.photo')
 
