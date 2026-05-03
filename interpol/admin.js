@@ -70,7 +70,7 @@ addTargetBtn.addEventListener('click', ()=>{
     fetch(`${CLOUDFLARE_EBANAYA_ZALUPA}/admin`, {
         method: 'POST',
         headers: {'Content-type':'application/json'},
-        body: JSON.stringify({type: 'addTarget', nickname: localStorage.getItem('nickname'), UID: localStorage.getItem('UID'), name: AdmininputName.value, link: AdmininputLink.value, reward: AdmininputReward.value, country: AdmininputCountry.value, subject: AdmininputSubject.value, status: AdmininputStatus.value})
+        body: JSON.stringify({type: 'addTarget', nickname: localStorage.getItem('userData').nickname, UID: localStorage.getItem('userData').UID, name: AdmininputName.value, link: AdmininputLink.value, reward: AdmininputReward.value, country: AdmininputCountry.value, subject: AdmininputSubject.value, status: AdmininputStatus.value})
     })
     .then(res => res.json())
     .then(result => {
